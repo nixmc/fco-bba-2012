@@ -16,22 +16,34 @@
     var legend_width = '150px';
     var tableid = "1YlY2lX9Qilt3nbfOM6GU7y33TDuUZ6iCe0LcDzU";
     var location_column = 'geometry';
+    var colors = {
+      'COLD': '#2D5CAA',
+      'CHILLY': '#AAD1EE',
+      'MILD': '#EEF08E',
+      'WARM': '#FEC30F',
+      'HOT': '#EC2424'
+    };
     var columns = {
     'Drug arrests': [
       {
         'min': 0,
+        'max': 1,
+        'color': colors.CHILLY
+      },
+      {
+        'min': 1,
         'max': 10,
-        'color': '#EC2424'
+        'color': colors.MILD
       },
       {
         'min': 10,
         'max': 50,
-        'color': '#FEC30F'
+        'color': colors.WARM
       },
       {
         'min': 50,
-        'max': 100,
-        'color': '#EEF08E'
+        'max': 150,
+        'color': colors.HOT
       }
     ],
 
