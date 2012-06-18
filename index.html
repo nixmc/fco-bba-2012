@@ -24,76 +24,224 @@
       'HOT': '#EC2424'
     };
     var columns = {
-    'Drug arrests': [
-      {
-        'min': 0,
-        'max': 1,
-        'color': colors.CHILLY
-      },
-      {
-        'min': 1,
-        'max': 10,
-        'color': colors.MILD
-      },
-      {
-        'min': 10,
-        'max': 50,
-        'color': colors.WARM
-      },
-      {
-        'min': 50,
-        'max': 150,
-        'color': colors.HOT
-      }
-    ],
-
-    'Hospitalisation': [
-      {
-        'min': 7,
-        'max': 10,
-        'color': '#EEF08E'
-      },
-      {
-        'min': 10,
-        'max': 20,
-        'color': '#FEC30F'
-      },
-      {
-        'min': 20,
-        'max': 30,
-        'color': '#EC2424'
-      }
-    ],
-    'Rape': [
-      {
-        'min': 0.2,
-        'max': 0.4,
-        'color': '#EC2424'
-      },
-      {
-        'min': 0.4,
-        'max': 0.6,
-        'color': '#FEC30F'
-      },
-          {
-        'min': 0.6,
-        'max': 0.8,
-        'color': '#AAD1EE'
-      },
-      {
-        'min': 0.8,
-        'max': 1,
-        'color': '#2D5CAA'
-      }
-    ],
-    'Sexual assault': [
-    ],
-    'Total other assistance': [
-    ],
-    'Total assistance': [
-    ],
-    'ETDs': [
-    ]
+      'Drug arrests': [
+        {
+          'min': 0,
+          'max': 1,
+          'color': colors.CHILLY
+        },
+        {
+          'min': 1,
+          'max': 10,
+          'color': colors.MILD
+        },
+        {
+          'min': 10,
+          'max': 50,
+          'color': colors.WARM
+        },
+        {
+          'min': 50,
+          'max': 150,
+          'color': colors.HOT
+        }
+      ],
+      'Total arrests / detentions': [
+        {
+          'min': 0,
+          'max': 1,
+          'color': colors.COLD
+        },
+        {
+          'min': 1,
+          'max': 10,
+          'color': colors.CHILLY
+        },
+        {
+          'min': 10,
+          'max': 50,
+          'color': colors.MILD
+        },
+        {
+          'min': 50,
+          'max': 100,
+          'color': colors.WARM
+        },
+        {
+          'min': 100,
+          'max': 2000,
+          'color': colors.HOT
+        }      
+      ],
+      'Total deaths': [
+        {
+          'min': 0,
+          'max': 1,
+          'color': colors.COLD
+        },
+        {
+          'min': 1,
+          'max': 10,
+          'color': colors.CHILLY
+        },
+        {
+          'min': 10,
+          'max': 50,
+          'color': colors.MILD
+        },
+        {
+          'min': 50,
+          'max': 100,
+          'color': colors.WARM
+        },
+        {
+          'min': 100,
+          'max': 2000,
+          'color': colors.HOT
+        }      
+      ],
+      'Hospitalisation': [
+        {
+          'min': 0,
+          'max': 1,
+          'color': colors.COLD
+        },
+        {
+          'min': 1,
+          'max': 10,
+          'color': colors.CHILLY
+        },
+        {
+          'min': 10,
+          'max': 50,
+          'color': colors.MILD
+        },
+        {
+          'min': 50,
+          'max': 100,
+          'color': colors.WARM
+        },
+        {
+          'min': 100,
+          'max': 2000,
+          'color': colors.HOT
+        }      
+      ],
+      'Rape': [
+        {
+          'min': 0,
+          'max': 1,
+          'color': colors.MILD
+        },
+        {
+          'min': 1,
+          'max': 5,
+          'color': colors.WARM
+        },
+        {
+          'min': 5,
+          'max': 20,
+          'color': colors.HOT
+        }      
+      ],
+      'Sexual assault': [
+        {
+          'min': 0,
+          'max': 1,
+          'color': colors.MILD
+        },
+        {
+          'min': 1,
+          'max': 5,
+          'color': colors.WARM
+        },
+        {
+          'min': 5,
+          'max': 25,
+          'color': colors.HOT
+        }      
+      ],
+      'Total other assistance': [
+        {
+          'min': 0,
+          'max': 1,
+          'color': colors.COLD
+        },
+        {
+          'min': 1,
+          'max': 10,
+          'color': colors.CHILLY
+        },
+        {
+          'min': 10,
+          'max': 50,
+          'color': colors.MILD
+        },
+        {
+          'min': 50,
+          'max': 100,
+          'color': colors.WARM
+        },
+        {
+          'min': 100,
+          'max': 600,
+          'color': colors.HOT
+        }      
+      ],
+      'Total assistance': [
+        {
+          'min': 0,
+          'max': 1,
+          'color': colors.COLD
+        },
+        {
+          'min': 1,
+          'max': 10,
+          'color': colors.CHILLY
+        },
+        {
+          'min': 10,
+          'max': 50,
+          'color': colors.MILD
+        },
+        {
+          'min': 50,
+          'max': 100,
+          'color': colors.WARM
+        },
+        {
+          'min': 100,
+          'max': 6000,
+          'color': colors.HOT
+        }      
+      ],
+      'ETDs': [
+        {
+          'min': 0,
+          'max': 1,
+          'color': colors.COLD
+        },
+        {
+          'min': 1,
+          'max': 10,
+          'color': colors.CHILLY
+        },
+        {
+          'min': 10,
+          'max': 50,
+          'color': colors.MILD
+        },
+        {
+          'min': 50,
+          'max': 100,
+          'color': colors.WARM
+        },
+        {
+          'min': 100,
+          'max': 6000,
+          'color': colors.HOT
+        }      
+      ]
     };
 
     var map, layer;
