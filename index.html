@@ -24,6 +24,9 @@
       font-weight: 300;
       margin-bottom: 18px;
     }
+    .tweet-btn {
+      font-size: 54px;
+    }
     section {
       padding-top: 60px;
     }
@@ -61,6 +64,7 @@
 <body>
   <div class="container">
     <header id="overview" class="jumbotron subhead">
+      <p class="tweet-btn pull-right"><a href="https://twitter.com/share" class="twitter-share-button" data-url="http://bit.ly/bba-2012" data-text="British Behaviour Abroad, 2012" data-via="FCOTravel"></a></p>
       <h1>British Behaviour Abroad, 2012</h1>
       <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
     </header>
@@ -105,5 +109,19 @@
       <p>Licensed under a <a href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution 3.0 Unported License</a>.</p>
     </footer>
   </div>
+
+  <script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-1903723-10']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+  </script>
+
+  <script type="text/javascript">!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
 </body>
 </html>
