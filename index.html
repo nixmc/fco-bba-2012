@@ -262,7 +262,26 @@
             stylers: [
               { visibility: 'off' }
             ]
-          },{ elementType: "labels", stylers: [ { saturation: -100 } ] },{ elementType: "geometry", stylers: [ { gamma: 0.78 }, { saturation: -100 }, { lightness: 98 } ] },{ featureType: "road", elementType: "geometry", stylers: [ { lightness: -13 } ] }
+          },
+          { 
+            elementType: "labels", 
+            stylers: [ 
+              { saturation: -100 } 
+            ] 
+          },
+          { 
+            elementType: "geometry", 
+            stylers: [ 
+              { gamma: 0.78 }, { saturation: -100 }, { lightness: 98 } 
+            ] 
+          },
+          { 
+            featureType: "road", 
+            elementType: "geometry", 
+            stylers: [ 
+              { lightness: -13 } 
+            ] 
+          }
         ];
 
         var styledMapType = new google.maps.StyledMapType(style, {
