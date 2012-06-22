@@ -79,12 +79,12 @@
   <script type="text/javascript">
   jQuery(document).ready(function($) {
     var autoSelect = function() {
-      $(this).select();
+      $(this).focus().select();
 
       return this;
     };
 
-    $("#embed-code").focus(autoSelect).click(autoSelect);
+    $("#embed-code").click(autoSelect);
   });
 
   jQuery(document).bind("mapUpdated", function(ev, currentColumn) {
@@ -117,7 +117,7 @@
         <div class="span12">
           <h2>Embed this map</h2>
           <p>If you would like to embed this map on your blog or website, use this code:</p>
-        <textarea id="embed-code" class="embed-code b2-text well" rows="2">&lt;iframe width=&quot;100%&quot; height=&quot;100%&quot; scrolling=&quot;no&quot; src=&quot;//fco-bba-2012.s3-website-eu-west-1.amazonaws.com/map.html&quot;&gt;&lt;/iframe&gt;</textarea>
+        <textarea id="embed-code" class="embed-code b2-text well" rows="1">&lt;iframe width=&quot;100%&quot; height=&quot;100%&quot; scrolling=&quot;no&quot; src=&quot;//fco-bba-2012.s3-website-eu-west-1.amazonaws.com/map.html&quot;&gt;&lt;/iframe&gt;</textarea>
         </div>
       </div>
     </section>
