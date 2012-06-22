@@ -440,16 +440,15 @@
         controlTextList.push('</b></p>');
         for(defined_style in defined_styles) {
           var style = defined_styles[defined_style];
+          if (style.max <= 5) {
+            continue;
+          }
           controlTextList.push('<div style="background-color: ');
           controlTextList.push(style.color);
           controlTextList.push('; height: 20px; width: 20px; margin: 3px; float: left;"></div>');
-          if (style.max <= 5) {
-            controlTextList.push('Below threshold');
-          } else {
-            controlTextList.push(style.min);
-            controlTextList.push(' to ');
-            controlTextList.push(style.max);
-          }
+          controlTextList.push(style.min);
+          controlTextList.push(' to ');
+          controlTextList.push(style.max);
           controlTextList.push('<br style="clear: both;"/>');
         }
 
