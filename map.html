@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html>
 <head>
-  <title>British Foreign &amp; Commonwealth Office (FCO) | British Behaviour Abroad, No. of Drug Arrests, 2012</title>
+  <title>British Foreign &amp; Commonwealth Office (FCO) | Britons in trouble abroad | 2011-2012</title>
     <link rel="icon" type="image/vnd.microsoft.icon" href="http://www.fco.gov.uk/sitepack/layouts/xm_supplied/icon/favicon.ico" />
     <style type="text/css">
      html, body, #map_canvas {
@@ -9,6 +9,9 @@
        padding: 0;
        height: 100%;
        background-color: #fff;
+     }
+     body {
+      font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
      }
     </style>
     <script type="text/javascript" src="//maps.googleapis.com/maps/api/js?v=3.7&amp;sensor=false"></script>
@@ -27,6 +30,33 @@
       'HOT': '#EC2424'
     };
     var columns = {
+      'Total assistance': [
+        {
+          'min': 0,
+          'max': 5,
+          'color': colors.NA
+        },
+        {
+          'min': 5,
+          'max': 10,
+          'color': colors.CHILLY
+        },
+        {
+          'min': 10,
+          'max': 50,
+          'color': colors.MILD
+        },
+        {
+          'min': 50,
+          'max': 100,
+          'color': colors.WARM
+        },
+        {
+          'min': 100,
+          'max': 6000,
+          'color': colors.HOT
+        }      
+      ],
       'Drug arrests': [
         {
           'min': 0,
@@ -49,7 +79,7 @@
           'color': colors.HOT
         }
       ],
-      'Total arrests / detentions': [
+      'Total arrests or detentions': [
         {
           'min': 0,
           'max': 5,
@@ -76,7 +106,7 @@
           'color': colors.HOT
         }      
       ],
-      'Total deaths': [
+      'Deaths': [
         {
           'min': 0,
           'max': 5,
@@ -130,7 +160,7 @@
           'color': colors.HOT
         }      
       ],
-      'Rape': [
+      'Victims of rape': [
         {
           'min': 0,
           'max': 5,
@@ -152,7 +182,7 @@
           'color': colors.HOT
         }      
       ],
-      'Sexual assault': [
+      'Victims of sexual assault': [
         {
           'min': 0,
           'max': 5,
@@ -174,7 +204,34 @@
           'color': colors.HOT
         }      
       ],
-      'Total other assistance': [
+      'Issue of emergency travel documentation': [
+        {
+          'min': 0,
+          'max': 5,
+          'color': colors.NA
+        },
+        {
+          'min': 5,
+          'max': 10,
+          'color': colors.CHILLY
+        },
+        {
+          'min': 10,
+          'max': 50,
+          'color': colors.MILD
+        },
+        {
+          'min': 50,
+          'max': 100,
+          'color': colors.WARM
+        },
+        {
+          'min': 100,
+          'max': 6000,
+          'color': colors.HOT
+        }      
+      ],
+      'Other kinds of assistance': [
         {
           'min': 0,
           'max': 5,
@@ -198,60 +255,6 @@
         {
           'min': 100,
           'max': 600,
-          'color': colors.HOT
-        }      
-      ],
-      'Total assistance': [
-        {
-          'min': 0,
-          'max': 5,
-          'color': colors.NA
-        },
-        {
-          'min': 5,
-          'max': 10,
-          'color': colors.CHILLY
-        },
-        {
-          'min': 10,
-          'max': 50,
-          'color': colors.MILD
-        },
-        {
-          'min': 50,
-          'max': 100,
-          'color': colors.WARM
-        },
-        {
-          'min': 100,
-          'max': 6000,
-          'color': colors.HOT
-        }      
-      ],
-      'ETDs': [
-        {
-          'min': 0,
-          'max': 5,
-          'color': colors.NA
-        },
-        {
-          'min': 5,
-          'max': 10,
-          'color': colors.CHILLY
-        },
-        {
-          'min': 10,
-          'max': 50,
-          'color': colors.MILD
-        },
-        {
-          'min': 50,
-          'max': 100,
-          'color': colors.WARM
-        },
-        {
-          'min': 100,
-          'max': 6000,
           'color': colors.HOT
         }      
       ]
@@ -378,6 +381,10 @@
         updateLegend(column);
         infoWindow.close();
         currentColumn = column;
+
+        try {
+          window.parent.$(window.parent.document).trigger("mapUpdated", column);
+        } catch (err) {}
     }
 
     // Create the where clause
@@ -454,7 +461,7 @@
     </script>
 </head>
 <body>
-    <select onchange="addStyle(this.value);" id="selector" style="font-size: 14px"></select>
+    Showing: <select onchange="addStyle(this.value);" id="selector" style="font-size: 14px"></select>
     <div id="map_canvas"></div>
 </body>
 </html>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>British Foreign &amp; Commonwealth Office (FCO) | British Behaviour Abroad | 2012</title>
+  <title>British Foreign &amp; Commonwealth Office (FCO) | Britons in trouble abroad | 2011-2012</title>
   <link rel="icon" type="image/vnd.microsoft.icon" href="http://www.fco.gov.uk/sitepack/layouts/xm_supplied/icon/favicon.ico" />
   <link rel="stylesheet" type="text/css" media="screen" href="bootstrap/css/bootstrap.min.css" />
   <style type="text/css">
@@ -31,10 +31,12 @@
       cursor: pointer;
       color: #666666;
       line-height: 21px;
+      height: 21px;
       overflow: hidden;
       resize: none;
       white-space: nowrap;
-      width: 420px;
+      width: 920px;
+      padding: 9px;
     }
     section {
       padding-top: 60px;
@@ -67,6 +69,11 @@
         height: 100%;
         border: none;
     }
+    #about{
+        padding-bottom: 17px;
+        border-bottom: 1px solid #EEEEEE;
+        margin-bottom: 18px;
+    }
   </style>
   <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
   <script type="text/javascript">
@@ -79,41 +86,38 @@
 
     $("#embed-code").focus(autoSelect).click(autoSelect);
   });
+
+  jQuery(document).bind("mapUpdated", function(ev, currentColumn) {
+    // $("#content h1").text(currentColumn);
+  });
   </script>
 </head>
 <body>
   <div class="container">
     <header id="overview" class="jumbotron subhead">
       <p class="tweet-btn pull-right"><a href="https://twitter.com/share" class="twitter-share-button" data-url="http://bit.ly/bba-2012" data-text="British Behaviour Abroad, 2012" data-via="FCOTravel"></a></p>
-      <h1>British Behaviour Abroad, 2012</h1>
-      <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+      <h1>Britons in trouble abroad</h1>
+      <p class="lead">Total numbers of incidents requiring consular assistance from the Foreign and Commonwealth Office between April 2011 and March 2012, listed by country.</p>
     </header>
 
     <section id="content">
-      <div class="page-header">
-        <h1>Map <small>Lorem ipsum dolor sit amet</small></h1>
-      </div>
-
       <div class="row">
         <div id="map_container" class="span12">
           <iframe width="100%" height="100%" scrolling="no" src="map.html"></iframe>
         </div>
       </div>
+      
+      <div id="about" class="row">
+        <p class="span12">
+        These figures have been compiled from records of consular assistance provided by the Foreign and Commonwealth Office between April 2011 and March 2012. The combined data is publicly available as <a>a spreadsheet</a>.
+        </p>
+      </div>
 
       <div class="row">
-        <div class="span6">
-          <h2>Embed</h2>
-          <p>Copy and paste the code below into the HTML for your site:</p>
-          <textarea id="embed-code" class="embed-code b2-text well" rows="2">&lt;iframe width=&quot;100%&quot; height=&quot;100%&quot; scrolling=&quot;no&quot; src=&quot;//fco-bba-2012.s3-website-eu-west-1.amazonaws.com/map.html&quot;&gt;&lt;/iframe&gt;</textarea>
-        </div>
-        <div class="span6">
-          <h2>Data</h2>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-          tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-          quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-          consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-          cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-          proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        <div class="span12">
+          <h2>Embed this map</h2>
+          <p>If you would like to embed this map on your blog or website, use this code:</p>
+        <textarea id="embed-code" class="embed-code b2-text well" rows="2">&lt;iframe width=&quot;100%&quot; height=&quot;100%&quot; scrolling=&quot;no&quot; src=&quot;//fco-bba-2012.s3-website-eu-west-1.amazonaws.com/map.html&quot;&gt;&lt;/iframe&gt;</textarea>
         </div>
       </div>
     </section>
