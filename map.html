@@ -19,6 +19,7 @@
     var tableid = '1BBIBUVGrhCits7gz1o4oarrVHLiWkq48ejwKMyU';
     var location_column = 'geometry';
     var colors = {
+      'NA': '#DADADA',
       'COLD': '#2D5CAA',
       'CHILLY': '#AAD1EE',
       'MILD': '#EEF08E',
@@ -29,11 +30,11 @@
       'Drug arrests': [
         {
           'min': 0,
-          'max': 1,
-          'color': colors.CHILLY
+          'max': 5,
+          'color': colors.NA
         },
         {
-          'min': 1,
+          'min': 5,
           'max': 10,
           'color': colors.MILD
         },
@@ -51,11 +52,11 @@
       'Total arrests / detentions': [
         {
           'min': 0,
-          'max': 1,
-          'color': colors.COLD
+          'max': 5,
+          'color': colors.NA
         },
         {
-          'min': 1,
+          'min': 5,
           'max': 10,
           'color': colors.CHILLY
         },
@@ -78,11 +79,11 @@
       'Total deaths': [
         {
           'min': 0,
-          'max': 1,
-          'color': colors.COLD
+          'max': 5,
+          'color': colors.NA
         },
         {
-          'min': 1,
+          'min': 5,
           'max': 10,
           'color': colors.CHILLY
         },
@@ -105,11 +106,11 @@
       'Hospitalisation': [
         {
           'min': 0,
-          'max': 1,
-          'color': colors.COLD
+          'max': 5,
+          'color': colors.NA
         },
         {
-          'min': 1,
+          'min': 5,
           'max': 10,
           'color': colors.CHILLY
         },
@@ -132,16 +133,21 @@
       'Rape': [
         {
           'min': 0,
-          'max': 1,
-          'color': colors.MILD
-        },
-        {
-          'min': 1,
           'max': 5,
-          'color': colors.WARM
+          'color': colors.NA
         },
         {
           'min': 5,
+          'max': 10,
+          'color': colors.MILD
+        },
+        {
+          'min': 10,
+          'max': 15,
+          'color': colors.WARM
+        },
+        {
+          'min': 15,
           'max': 20,
           'color': colors.HOT
         }      
@@ -149,16 +155,21 @@
       'Sexual assault': [
         {
           'min': 0,
-          'max': 1,
-          'color': colors.MILD
-        },
-        {
-          'min': 1,
           'max': 5,
-          'color': colors.WARM
+          'color': colors.NA
         },
         {
           'min': 5,
+          'max': 10,
+          'color': colors.MILD
+        },
+        {
+          'min': 10,
+          'max': 15,
+          'color': colors.WARM
+        },
+        {
+          'min': 15,
           'max': 25,
           'color': colors.HOT
         }      
@@ -166,11 +177,11 @@
       'Total other assistance': [
         {
           'min': 0,
-          'max': 1,
-          'color': colors.COLD
+          'max': 5,
+          'color': colors.NA
         },
         {
-          'min': 1,
+          'min': 5,
           'max': 10,
           'color': colors.CHILLY
         },
@@ -193,11 +204,11 @@
       'Total assistance': [
         {
           'min': 0,
-          'max': 1,
-          'color': colors.COLD
+          'max': 5,
+          'color': colors.NA
         },
         {
-          'min': 1,
+          'min': 5,
           'max': 10,
           'color': colors.CHILLY
         },
@@ -220,11 +231,11 @@
       'ETDs': [
         {
           'min': 0,
-          'max': 1,
-          'color': colors.COLD
+          'max': 5,
+          'color': colors.NA
         },
         {
-          'min': 1,
+          'min': 5,
           'max': 10,
           'color': colors.CHILLY
         },
@@ -308,10 +319,11 @@
           var template = "<div style='font-family:sans-serif' class='googft-info-window'><b>{{country}}</b><br><b>{{key}}:</b> {{value}}<br></div>";
 
           return function(opts) {
+            var value = opts.row[currentColumn.toLowerCase()].value;
             var renderedContent = (template
               .replace("{{country}}", opts.row.Country.value)
               .replace("{{key}}", currentColumn)
-              .replace("{{value}}", opts.row[currentColumn.toLowerCase()].value));
+              .replace("{{value}}", value >= 5 && value || "Below threshold for counting"));
 
             infoWindow.close()
             infoWindow.setContent(renderedContent);
@@ -424,9 +436,13 @@
           controlTextList.push('<div style="background-color: ');
           controlTextList.push(style.color);
           controlTextList.push('; height: 20px; width: 20px; margin: 3px; float: left;"></div>');
-          controlTextList.push(style.min);
-          controlTextList.push(' to ');
-          controlTextList.push(style.max);
+          if (style.max <= 5) {
+            controlTextList.push('Below threshold');
+          } else {
+            controlTextList.push(style.min);
+            controlTextList.push(' to ');
+            controlTextList.push(style.max);
+          }
           controlTextList.push('<br style="clear: both;"/>');
         }
 
