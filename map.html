@@ -246,7 +246,7 @@
       ]
     };
 
-    var map, layer;
+    var map, layer, currentColumn, infoWindow;
 
     function initialize() {
 
@@ -293,13 +293,36 @@
         map.mapTypes.set('map-style', styledMapType);
         map.setMapTypeId('map-style');
 
+        infoWindow = new google.maps.InfoWindow();
 
         layer = new google.maps.FusionTablesLayer({
           query: {
             select: location_column,
             from: tableid
-          }
+          },
+          suppressInfoWindows: true
         });
+        
+        var clickListener = (function() {
+          
+          var template = "<div style='font-family:sans-serif' class='googft-info-window'><b>{{country}}</b><br><b>{{key}}:</b> {{value}}<br></div>";
+
+          return function(opts) {
+            var renderedContent = (template
+              .replace("{{country}}", opts.row.Country.value)
+              .replace("{{key}}", currentColumn)
+              .replace("{{value}}", opts.row[currentColumn.toLowerCase()].value));
+
+            infoWindow.close()
+            infoWindow.setContent(renderedContent);
+            infoWindow.setPosition(opts.latLng);
+            infoWindow.open(map);
+          };
+
+        })();
+
+        google.maps.event.addListener(layer, 'click', clickListener);
+
         layer.setMap(map);
 
         init_selectmenu();
@@ -341,6 +364,8 @@
 
         layer.set('styles', styles);
         updateLegend(column);
+        infoWindow.close();
+        currentColumn = column;
     }
 
     // Create the where clause
