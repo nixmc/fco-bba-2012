@@ -1,14 +1,14 @@
-# British Behaviour Abroad, 2012
+#Britons in trouble abroad
 
 Total numbers of incidents requiring consular assistance from the Foreign and Commonwealth Office between April 2011 and March 2012, listed by country.
 
-<iframe width="100%" height="100%" scrolling="no" src="//fco-bba-2012.s3-website-eu-west-1.amazonaws.com/map.html"></iframe>
+Visit <a href="http://bit.ly/bba-2012">http://bit.ly/bba-2012</a> for more info.
 
-## Data sources
+##Data sources
 
-These figures have been compiled from records of consular assistance provided by the Foreign and Commonwealth Office between April 2011 and March 2012. The combined data is publicly available as a [spreadsheet](tbc).
+These figures have been compiled from records of consular assistance provided by the Foreign and Commonwealth Office between April 2011 and March 2012. The combined data is publicly available as a [spreadsheet](http://bit.ly/bba-data-2012).
 
-## Credits
+##Credits
 
 * Data courtesy of the [British Foreign &amp; Commonwealth Office](http://www.fco.gov.uk/).
 * Design inspired by the [Guardian Datablog](http://www.guardian.co.uk/news/datablog).
