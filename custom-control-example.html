@@ -14,12 +14,43 @@
       font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
      }
     </style>
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.js"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.3.3/underscore-min.js"></script>
     <script type="text/javascript" src="//maps.googleapis.com/maps/api/js?v=3.7&amp;sensor=false"></script>
     <script type="text/javascript">
     var home = new google.maps.LatLng(50.810679,-0.508461);
     var zoom = 15;
     var map, layer, currentColumn, infoWindow;
 
+
+    function LayerControl(controlDiv, map) {
+      controlDiv.style.padding = '5px';
+
+      var controlUI = $(
+        '<div>Showing: <select> \
+          <option value="One">One</option> \
+          <option value="Two">Two</option> \
+          <option value="Three">Three</option> \
+        </select></div>')[0];
+
+      controlUI.style.backgroundColor = 'white';
+      controlUI.style.borderStyle = 'solid';
+      controlUI.style.borderWidth = '1px';
+      controlUI.style.cursor = 'pointer';
+      controlUI.style.textAlign = 'center';
+      controlUI.style.fontFamily = 'Arial,sans-serif';
+      controlUI.style.fontSize = '12px';
+      controlUI.style.paddingLeft = '4px';
+      controlUI.style.paddingRight = '4px';
+      controlUI.title = 'Click to change the layer displayed';
+
+      controlDiv.appendChild(controlUI);
+
+      google.maps.event.addDomListener(controlUI, "change", function() {
+        console.log("change", this, arguments);
+      });
+
+    }
 
     function HomeControl(controlDiv, map) {
 
@@ -72,6 +103,14 @@
 
         homeControlDiv.index = 1;
         map.controls[google.maps.ControlPosition.TOP_RIGHT].push(homeControlDiv);
+
+        // Layer controls
+        var layerControlDiv = document.createElement('div');
+        var layerControl = new LayerControl(layerControlDiv, map);
+
+        layerControlDiv.index = 1;
+        map.controls[google.maps.ControlPosition.TOP_RIGHT].push(layerControlDiv);
+
 
     }
 
