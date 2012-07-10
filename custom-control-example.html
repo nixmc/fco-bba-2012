@@ -1,0 +1,84 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <title>British Foreign &amp; Commonwealth Office (FCO) | Britons in trouble abroad | 2011-2012</title>
+    <link rel="icon" type="image/vnd.microsoft.icon" href="http://www.fco.gov.uk/sitepack/layouts/xm_supplied/icon/favicon.ico" />
+    <style type="text/css">
+     html, body, #map_canvas {
+       margin: 0;
+       padding: 0;
+       height: 100%;
+       background-color: #fff;
+     }
+     body {
+      font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+     }
+    </style>
+    <script type="text/javascript" src="//maps.googleapis.com/maps/api/js?v=3.7&amp;sensor=false"></script>
+    <script type="text/javascript">
+    var home = new google.maps.LatLng(50.810679,-0.508461);
+    var zoom = 15;
+    var map, layer, currentColumn, infoWindow;
+
+
+    function HomeControl(controlDiv, map) {
+
+      // Set CSS styles for the DIV containing the control
+      // Setting padding to 5 px will offset the control
+      // from the edge of the map.
+      controlDiv.style.padding = '5px';
+
+      // Set CSS for the control border.
+      var controlUI = document.createElement('div');
+      controlUI.style.backgroundColor = 'white';
+      controlUI.style.borderStyle = 'solid';
+      controlUI.style.borderWidth = '1px';
+      controlUI.style.cursor = 'pointer';
+      controlUI.style.textAlign = 'center';
+      controlUI.title = 'Click to set the map to Home';
+      controlDiv.appendChild(controlUI);
+
+      // Set CSS for the control interior.
+      var controlText = document.createElement('div');
+      controlText.style.fontFamily = 'Arial,sans-serif';
+      controlText.style.fontSize = '12px';
+      controlText.style.paddingLeft = '4px';
+      controlText.style.paddingRight = '4px';
+      controlText.innerHTML = '<strong>Home<strong>';
+      controlUI.appendChild(controlText);
+
+      // Setup the click event listeners: simply set the map to Chicago.
+      google.maps.event.addDomListener(controlUI, 'click', function() {
+        map.setCenter(home)
+      });
+    }
+
+    function initialize() {
+
+        map = new google.maps.Map(document.getElementById('map_canvas'), {
+          center: home,
+          zoom: zoom,
+          mapTypeId: google.maps.MapTypeId.ROADMAP,
+          disableDefaultUI: true,
+          panControl: true,
+          zoomControl: true,
+          scaleControl: true
+        });
+
+        // Create the DIV to hold the control and call the HomeControl() constructor
+        // passing in this DIV.
+        var homeControlDiv = document.createElement('div');
+        var homeControl = new HomeControl(homeControlDiv, map);
+
+        homeControlDiv.index = 1;
+        map.controls[google.maps.ControlPosition.TOP_RIGHT].push(homeControlDiv);
+
+    }
+
+    google.maps.event.addDomListener(window, 'load', initialize);
+    </script>
+</head>
+<body>
+    <div id="map_canvas"></div>
+</body>
+</html>
