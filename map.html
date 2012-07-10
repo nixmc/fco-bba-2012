@@ -262,12 +262,40 @@
 
     var map, layer, currentColumn, infoWindow;
 
+    function LayerControl(controlDiv, options, map, callback) {
+        controlDiv.style.padding = '5px';
+
+        var controlUI = document.createElement('select');
+        for(option in options) {
+            var optionEl = document.createElement('option');
+            optionEl.setAttribute('value', option);
+            optionEl.innerHTML = option;
+            controlUI.appendChild(optionEl);
+        }
+
+        controlUI.style.fontFamily = 'Arial,sans-serif';
+        controlUI.style.fontSize = '12px';
+        controlUI.style.paddingLeft = '4px';
+        controlUI.style.paddingRight = '4px';
+        controlUI.title = 'Click to change the layer displayed';
+
+        controlDiv.appendChild(controlUI);
+
+        google.maps.event.addDomListener(controlUI, "change", function() {
+            callback.call(this, this.value);
+        });
+    }
+
     function initialize() {
 
         map = new google.maps.Map(document.getElementById('map_canvas'), {
           center: center,
           zoom: zoom,
-          mapTypeId: google.maps.MapTypeId.ROADMAP
+          mapTypeId: google.maps.MapTypeId.ROADMAP,
+          disableDefaultUI: true,
+          panControl: true,
+          zoomControl: true,
+          scaleControl: true
         });
 
         var style = [
@@ -340,24 +368,19 @@
 
         layer.setMap(map);
 
-        init_selectmenu();
+        // Layer controls
+        var layerControlDiv = document.createElement('div');
+        var layerControl = new LayerControl(layerControlDiv, columns, map, addStyle);
+
+        layerControlDiv.index = 1;
+        map.controls[google.maps.ControlPosition.TOP_RIGHT].push(layerControlDiv);
+
         addStyle(getKey());
     }
 
     function getKey() {
         for (key in columns) {
           return key;
-        }
-    }
-
-    // Initialize the drop-down menu
-    function init_selectmenu() {
-        var selectmenu = document.getElementById('selector');
-        for(column in columns) {
-          var option = document.createElement('option');
-          option.setAttribute('value', column);
-          option.innerHTML = column;
-          selectmenu.appendChild(option);
         }
     }
 
@@ -460,7 +483,6 @@
     </script>
 </head>
 <body>
-    Showing: <select onchange="addStyle(this.value);" id="selector" style="font-size: 14px"></select>
     <div id="map_canvas"></div>
 </body>
 </html>
