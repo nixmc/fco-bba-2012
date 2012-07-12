@@ -31,6 +31,24 @@
     .close {
       float: right;
     }
+    .googft-info-window-title { 
+        margin: 0 0 0.5em 0;
+        font-weight: bold;
+    }
+    .googft-info-window-info { 
+        margin: 0 0 1em 0;
+        font-size: 0.9em;
+    }
+    .googft-info-window-additional {
+        margin: 0.5em 0 0 0;
+        padding: 0.5em 0 0 0;
+        border: solid lightgray;
+        border-width: 0.1em 0 0 0;
+        font-size: 0.8em;
+    }
+    .key-text {
+        padding-top: 0.5em;
+    }
     </style>
     <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
     <script type="text/javascript" src="//maps.googleapis.com/maps/api/js?v=3.7&amp;sensor=false"></script>
@@ -39,7 +57,7 @@
     var center = new google.maps.LatLng(32.0000, -5.0000);
     var zoom = 2;
     var legend_width = '150px';
-    var tableid = '1eDvDsccE9wYPeVxKZd9O1qLihCcD27qQIVsybjA';
+    var tableid = '1aIVQ3cUzw9slE-A9GtrfajAQY0Z3JPh9bPD2R78';
     var location_column = 'geometry';
     var colors = {
       'NA': '#ffffff',
@@ -432,14 +450,25 @@
         
         var clickListener = (function() {
           
-          var template = "<div style='font-family:sans-serif' class='googft-info-window'><b>{{country}}</b><br><b>{{key}}:</b> {{value}}<br></div>";
+          var template = "<div style='font-family:sans-serif' class='googft-info-window'>\
+              <div class='googft-info-window-div googft-info-window-title'>\
+                <span>{{country}}</span><br>\
+              </div>\
+              <div class='googft-info-window-div googft-info-window-info'>\
+                <span><b>{{key}}:</b> {{value}}</span>\
+              </div>\
+              <div class='googft-info-window-div googft-info-window-additional'>\
+                <span><a href='http://www.fco.gov.uk{{path}}' title='Travel advice for {{country}}' target='_top'>Travel advice for {{country}}</a></span>\
+              </div>\
+            </div>";
 
           return function(opts) {
             var value = opts.row[currentColumn.toLowerCase()].value;
             var renderedContent = (template
-              .replace("{{country}}", opts.row.Country.value)
-              .replace("{{key}}", currentColumn)
-              .replace("{{value}}", value >= 5 && value || "Below threshold for counting"));
+              .replace(/\{\{country\}\}/gm, opts.row.Country.value, 'm')
+              .replace(/\{\{key\}\}/gm, currentColumn)
+              .replace(/\{\{value\}\}/gm, value >= 5 && value || "Below threshold for counting")
+              .replace(/\{\{path\}\}/gm, opts.row.path.value));
 
             infoWindow.close()
             infoWindow.setContent(renderedContent);
@@ -564,9 +593,9 @@
           controlTextList.push('<div style="background-color: ');
           controlTextList.push(style.color);
           controlTextList.push('; height: 20px; width: 20px; margin: 3px; float: left;"></div>');
-          controlTextList.push(style.min);
+          controlTextList.push('<div class="key-text">' + style.min);
           controlTextList.push(' to ');
-          controlTextList.push(style.max);
+          controlTextList.push(style.max + '</div>');
           controlTextList.push('<br style="clear: both;"/>');
         }
 
