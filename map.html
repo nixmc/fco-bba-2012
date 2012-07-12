@@ -22,12 +22,12 @@
     var tableid = '1eDvDsccE9wYPeVxKZd9O1qLihCcD27qQIVsybjA';
     var location_column = 'geometry';
     var colors = {
-      'NA': '#DADADA',
-      'COLD': '#2D5CAA',
-      'CHILLY': '#AAD1EE',
-      'MILD': '#EEF08E',
-      'WARM': '#FEC30F',
-      'HOT': '#EC2424'
+      'NA': '#ffffff',
+      'COLD': '#d4dd26',
+      'CHILLY': '#d9a23c',
+      'MILD': '#e06454',
+      'WARM': '#bc234b',
+      'HOT': '#bc234b'
     };
     var columns = {
       'Total assistance': [
@@ -300,10 +300,10 @@
 
         var style = [
           {
-            featureType: 'administrative',
-            elementType: 'all',
+            featureType: "administrative",
+            elementType: "all",
             stylers: [
-              { visibility: 'off' }
+              { visibility: "off" }
             ]
           },
           { 
@@ -313,9 +313,24 @@
             ] 
           },
           { 
-            elementType: "geometry", 
+            featureType: "poi",
+            elementType: "all", 
             stylers: [ 
-              { gamma: 0.78 }, { saturation: -100 }, { lightness: 98 } 
+              { visibility: "off" }
+            ] 
+          },
+          { 
+            featureType: "landscape",
+            elementType: "all", 
+            stylers: [ 
+              { visibility: "off" }
+            ] 
+          },
+          { 
+            featureType: "transit",
+            elementType: "all", 
+            stylers: [ 
+              { visibility: "off" }
             ] 
           },
           { 
@@ -323,6 +338,17 @@
             elementType: "geometry", 
             stylers: [ 
               { lightness: -13 } 
+            ] 
+          }
+          ,{ 
+            featureType: "water", 
+            elementType: "geometry", 
+            stylers: [ 
+              { visibility: "on" }, 
+              { hue: "#44a2bc" },
+              { lightness: -28 }, 
+              { saturation: -20 }, 
+              { gamma: 1.0 }
             ] 
           }
         ];
