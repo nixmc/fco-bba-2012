@@ -65,7 +65,7 @@
       'CHILLY': '#d9a23c',
       'MILD': '#e06454',
       'WARM': '#bc234b',
-      'HOT': '#bc234b'
+      'HOT': '#990249'
     };
     var columns = {
       'Total assistance': [
@@ -414,9 +414,9 @@
           },
           { 
             featureType: "road", 
-            elementType: "geometry", 
+            elementType: "all", 
             stylers: [ 
-              { lightness: -13 } 
+              { visibility: "off" }
             ] 
           }
           ,{ 
@@ -494,6 +494,8 @@
         // Add embed control
         addGenericControl(map, "Embed", "Click to get the embed code for this map", 2, function() {
             $(".embed.jqmWindow").jqm({closeClass: 'close'}).jqmShow();
+
+            $("#embed-code").focus().select();
         });
 
         // Add about control
@@ -623,7 +625,7 @@
     <div id="map_canvas"></div>
     
     <div class="embed jqmWindow">
-      <h2>Embed<a class="small close" href="#">Close</a></h2>
+      <h2>Embed this map<a class="small close" href="#">Close</a></h2>
 
       <div>
       <p>If you would like to embed this map on your blog or website, use this code:</p>
@@ -632,8 +634,10 @@
     </div>
 
     <div class="about jqmWindow">
-      <h2>About<a class="small close" href="#">Close</a></h2>
+      <h2>Britons in trouble abroad<a class="small close" href="#">Close</a></h2>
 
+      <p>Total numbers of incidents requiring consular assistance from the Foreign and Commonwealth Office between April 2011 and March 2012, listed by country.</p>
+      
       <p>These figures have been compiled from records of consular assistance provided by the Foreign and Commonwealth Office between April 2011 and March 2012. The combined data is publicly available as <a href="http://bit.ly/bba-data-2012" target="_top">a Google spreadsheet</a>.</p>
 
       <p class="small">Design inspired by the <a href="http://www.guardian.co.uk/news/datablog" target="_top">Guardian Datablog</a>.</p>
