@@ -492,6 +492,8 @@
         // Add embed control
         addGenericControl(map, "Embed", "Click to get the embed code for this map", 2, function() {
             $(".embed.jqmWindow").jqm({closeClass: 'close'}).jqmShow();
+
+            $("#embed-code").focus().select();
         });
 
         // Add about control
