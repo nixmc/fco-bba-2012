@@ -4,15 +4,35 @@
   <title>British Foreign &amp; Commonwealth Office (FCO) | Britons in trouble abroad | 2011-2012</title>
     <link rel="icon" type="image/vnd.microsoft.icon" href="http://www.fco.gov.uk/sitepack/layouts/xm_supplied/icon/favicon.ico" />
     <style type="text/css">
-     html, body, #map_canvas {
-       margin: 0;
-       padding: 0;
-       height: 100%;
-       background-color: #fff;
-     }
-     body {
-      font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
-     }
+        html, body, #map_canvas {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            background-color: #fff;
+        }
+        body {
+            font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+        }
+
+        .googft-info-window-title { 
+            margin: 0 0 0.5em 0;
+            font-weight: bold;
+        }
+        .googft-info-window-info { 
+            margin: 0 0 1em 0;
+            font-size: 0.9em;
+        }
+        .googft-info-window-additional {
+            margin: 0.5em 0 0 0;
+            padding: 0.5em 0 0 0;
+            border: solid lightgray;
+            border-width: 0.1em 0 0 0;
+            font-size: 0.8em;
+        }
+        
+        .key-text {
+            padding-top: 0.5em;
+        }
     </style>
     <script type="text/javascript" src="//maps.googleapis.com/maps/api/js?v=3.7&amp;sensor=false"></script>
     <script type="text/javascript">
@@ -374,9 +394,15 @@
         var clickListener = (function() {
           
           var template = "<div style='font-family:sans-serif' class='googft-info-window'>\
-            <b>{{country}}</b><br>\
-            <b>{{key}}:</b> {{value}}<br>\
-            <a href='http://www.fco.gov.uk{{path}}' title='Travel advice for {{country}}' target='_top'>Travel advice for {{country}}</a>\
+              <div class='googft-info-window-div googft-info-window-title'>\
+                <span>{{country}}</span><br>\
+              </div>\
+              <div class='googft-info-window-div googft-info-window-info'>\
+                <span><b>{{key}}:</b> {{value}}</span>\
+              </div>\
+              <div class='googft-info-window-div googft-info-window-additional'>\
+                <span><a href='http://www.fco.gov.uk{{path}}' title='Travel advice for {{country}}' target='_top'>Travel advice for {{country}}</a></span>\
+              </div>\
             </div>";
 
           return function(opts) {
@@ -500,9 +526,9 @@
           controlTextList.push('<div style="background-color: ');
           controlTextList.push(style.color);
           controlTextList.push('; height: 20px; width: 20px; margin: 3px; float: left;"></div>');
-          controlTextList.push(style.min);
+          controlTextList.push('<div class="key-text">' + style.min);
           controlTextList.push(' to ');
-          controlTextList.push(style.max);
+          controlTextList.push(style.max + '</div>');
           controlTextList.push('<br style="clear: both;"/>');
         }
 
