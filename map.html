@@ -307,14 +307,16 @@
         controlDiv.style.padding = '5px';
 
         // Set CSS for the control border.
-        var controlUI = document.createElement('div');
-        controlUI.style.backgroundColor = 'rgba(255,255,255,0.9)';
-        controlUI.style.borderStyle = 'solid';
-        controlUI.style.borderWidth = '1px';
-        controlUI.style.cursor = 'pointer';
-        controlUI.style.textAlign = 'center';
-        controlUI.title = title;
-        controlDiv.appendChild(controlUI);
+        // Do this using jQuery because IE8 is mental
+        var controlUI = document.createElement('div'),
+            $controlUI = $(controlUI);
+        $controlUI.css('background-color', 'rgba(255,255,255,0.9)');
+        $controlUI.css('border-style', 'solid');
+        $controlUI.css('border-width', '1px');
+        $controlUI.css('cursor', 'pointer');
+        $controlUI.css('text-align', 'center');
+        $controlUI.attr('title', title);
+        $(controlDiv).append($controlUI);
 
         // Set CSS for the control interior.
         var controlText = document.createElement('div');
@@ -322,10 +324,10 @@
         controlText.style.fontSize = '12px';
         controlText.style.padding = '4px';
         controlText.innerHTML = label;
-        controlUI.appendChild(controlText);
+        $controlUI.append(controlText);
 
         // Setup the click event listeners: simply set the map to Chicago.
-        google.maps.event.addDomListener(controlUI, 'click', function() {
+        google.maps.event.addDomListener($controlUI, 'click', function() {
             callback.call(this);
         });
     }
