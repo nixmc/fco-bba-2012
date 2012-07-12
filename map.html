@@ -3,6 +3,7 @@
 <head>
   <title>British Foreign &amp; Commonwealth Office (FCO) | Britons in trouble abroad | 2011-2012</title>
     <link rel="icon" type="image/vnd.microsoft.icon" href="http://www.fco.gov.uk/sitepack/layouts/xm_supplied/icon/favicon.ico" />
+    <link rel="stylesheet" type="text/css" href="css/jqModal.css" />
     <style type="text/css">
     html, body, #map_canvas {
        margin: 0;
@@ -13,8 +14,27 @@
     body {
       font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
     }
+    .embed-code {
+      cursor: pointer;
+      color: #666666;
+      line-height: 21px;
+      height: 21px;
+      overflow: hidden;
+      resize: none;
+      white-space: nowrap;
+      width: 576px;
+      padding: 9px;
+    }
+    .small {
+      font-size: 12px
+    }
+    .close {
+      float: right;
+    }
     </style>
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
     <script type="text/javascript" src="//maps.googleapis.com/maps/api/js?v=3.7&amp;sensor=false"></script>
+    <script type="text/javascript" src="js/jqModal.js"></script>
     <script type="text/javascript">
     var center = new google.maps.LatLng(32.0000, -5.0000);
     var zoom = 2;
@@ -262,6 +282,36 @@
 
     var map, layer, currentColumn, infoWindow;
 
+    function GenericControl(controlDiv, map, label, title, callback) {
+        // Set CSS styles for the DIV containing the control
+        // Setting padding to 5 px will offset the control
+        // from the edge of the map.
+        controlDiv.style.padding = '5px';
+
+        // Set CSS for the control border.
+        var controlUI = document.createElement('div');
+        controlUI.style.backgroundColor = 'rgba(255,255,255,0.9)';
+        controlUI.style.borderStyle = 'solid';
+        controlUI.style.borderWidth = '1px';
+        controlUI.style.cursor = 'pointer';
+        controlUI.style.textAlign = 'center';
+        controlUI.title = title;
+        controlDiv.appendChild(controlUI);
+
+        // Set CSS for the control interior.
+        var controlText = document.createElement('div');
+        controlText.style.fontFamily = 'Arial,sans-serif';
+        controlText.style.fontSize = '12px';
+        controlText.style.padding = '4px';
+        controlText.innerHTML = label;
+        controlUI.appendChild(controlText);
+
+        // Setup the click event listeners: simply set the map to Chicago.
+        google.maps.event.addDomListener(controlUI, 'click', function() {
+            callback.call(this);
+        });
+    }
+    
     function LayerControl(controlDiv, options, map, callback) {
         controlDiv.style.padding = '5px';
 
@@ -275,8 +325,6 @@
 
         controlUI.style.fontFamily = 'Arial,sans-serif';
         controlUI.style.fontSize = '12px';
-        controlUI.style.paddingLeft = '4px';
-        controlUI.style.paddingRight = '4px';
         controlUI.title = 'Click to change the layer displayed';
 
         controlDiv.appendChild(controlUI);
@@ -285,6 +333,17 @@
             callback.call(this, this.value);
         });
     }
+
+    function addGenericControl(map, label, title, index, callback) {
+        var controlDiv = document.createElement('div');
+        var control = new GenericControl(controlDiv, map, label, title, callback);
+
+        controlDiv.index = index;
+        map.controls[google.maps.ControlPosition.TOP_RIGHT].push(controlDiv);
+
+        return controlDiv;
+    }
+
 
     function initialize() {
 
@@ -398,8 +457,18 @@
         var layerControlDiv = document.createElement('div');
         var layerControl = new LayerControl(layerControlDiv, columns, map, addStyle);
 
-        layerControlDiv.index = 1;
+        layerControlDiv.index = 3;
         map.controls[google.maps.ControlPosition.TOP_RIGHT].push(layerControlDiv);
+
+        // Add embed control
+        addGenericControl(map, "Embed", "Click to get the embed code for this map", 2, function() {
+            $(".embed.jqmWindow").jqm({closeClass: 'close'}).jqmShow();
+        });
+
+        // Add about control
+        addGenericControl(map, "About", "Click to read about this map", 1, function() {
+            $(".about.jqmWindow").jqm({closeClass: 'close'}).jqmShow();
+        });
 
         addStyle(getKey());
     }
@@ -505,11 +574,41 @@
         return controlTextList.join('');
     }
 
-    google.maps.event.addDomListener(window, 'load', initialize);
+    google.maps.event.addDomListener(window, 'load', function () {
+      
+      initialize();
+
+      var autoSelect = function() {
+        $(this).focus().select();
+
+        return this;
+      };
+
+      $("#embed-code").click(autoSelect);
+    });
     </script>
 </head>
 <body>
     <div id="map_canvas"></div>
+    
+    <div class="embed jqmWindow">
+      <h2>Embed<a class="small close" href="#">Close</a></h2>
+
+      <div>
+      <p>If you would like to embed this map on your blog or website, use this code:</p>
+      <textarea id="embed-code" class="embed-code b2-text well" rows="1">&lt;iframe width=&quot;100%&quot; height=&quot;100%&quot; scrolling=&quot;no&quot; src=&quot;//fco-bba-2012.s3-website-eu-west-1.amazonaws.com/map.html&quot;&gt;&lt;/iframe&gt;</textarea>
+      </div>
+    </div>
+
+    <div class="about jqmWindow">
+      <h2>About<a class="small close" href="#">Close</a></h2>
+
+      <p>These figures have been compiled from records of consular assistance provided by the Foreign and Commonwealth Office between April 2011 and March 2012. The combined data is publicly available as <a href="http://bit.ly/bba-data-2012" target="_top">a Google spreadsheet</a>.</p>
+
+      <p class="small">Design inspired by the <a href="http://www.guardian.co.uk/news/datablog" target="_top">Guardian Datablog</a>.</p>
+      <p class="small">Licensed under a <a href="http://creativecommons.org/licenses/by/3.0/" target="_top">Creative Commons Attribution 3.0 Unported License</a>.</p>
+    </div>
+    
     <script type="text/javascript">
     var _gaq = _gaq || [];
     _gaq.push(['_setAccount', 'UA-1903723-10']);
