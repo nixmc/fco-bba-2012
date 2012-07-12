@@ -3,6 +3,7 @@
 <head>
   <title>British Foreign &amp; Commonwealth Office (FCO) | Britons in trouble abroad | 2011-2012</title>
     <link rel="icon" type="image/vnd.microsoft.icon" href="http://www.fco.gov.uk/sitepack/layouts/xm_supplied/icon/favicon.ico" />
+    <link rel="stylesheet" type="text/css" href="css/jqModal.css" />
     <style type="text/css">
      html, body, #map_canvas {
        margin: 0;
@@ -13,11 +14,31 @@
      body {
       font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
      }
+
+    .embed-code {
+      cursor: pointer;
+      color: #666666;
+      line-height: 21px;
+      height: 21px;
+      overflow: hidden;
+      resize: none;
+      white-space: nowrap;
+      width: 576px;
+      padding: 9px;
+    }
+
+     .small {
+      font-size: 12px
+     }
+
+     .close {
+      float: right;
+     }
     </style>
     <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.js"></script>
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.3.3/underscore-min.js"></script>
     <script type="text/javascript" src="//maps.googleapis.com/maps/api/js?v=3.7&amp;sensor=false"></script>
-    <script type="text/javascript" src="swfobject.js"></script>
+    <script type="text/javascript" src="js/jqModal.js"></script>
     <script type="text/javascript">
     var home = new google.maps.LatLng(50.810679,-0.508461);
     var zoom = 15;
@@ -110,6 +131,16 @@
         controlDiv.appendChild(controlUI);
     }
 
+    function addGenericControl(map, label, title, index, callback) {
+        var controlDiv = document.createElement('div');
+        var control = new GenericControl(controlDiv, map, label, title, callback);
+
+        controlDiv.index = index;
+        map.controls[google.maps.ControlPosition.TOP_RIGHT].push(controlDiv);
+
+        return controlDiv;
+    }
+
     function initialize() {
 
         map = new google.maps.Map(document.getElementById('map_canvas'), {
@@ -122,46 +153,58 @@
           scaleControl: true
         });
 
-        // Create the DIV to hold the control and call the HomeControl() constructor
-        // passing in this DIV.
-        var homeControlDiv = document.createElement('div');
-        var homeControl = new GenericControl(homeControlDiv, map, "Home", "Click to set the map to Home", function() {
+        // Add home control
+        addGenericControl(map, "Home", "Click to set the map to Home", 3, function() {
             map.setCenter(home);
             map.setZoom(15);
         });
 
-        homeControlDiv.index = 1;
-        map.controls[google.maps.ControlPosition.TOP_RIGHT].push(homeControlDiv);
+        // Add embed control
+        addGenericControl(map, "Embed", "Click to get the embed code for this map", 2, function() {
+            $(".embed.jqmWindow").jqm({closeClass: 'close'}).jqmShow();
+        });
 
-        // var embedControlDiv = document.createElement('div');
-        // var embedControl = new GenericControl(embedControlDiv, map, "Embed", "Grab the embed code for this map", function() {
-        //   console.log(this);
-        //   this.innerHTML = "<input type='text' value='foo bar'/> X"
-        // });
+        // Add about control
+        addGenericControl(map, "About", "Click to read about this map", 1, function() {
+            $(".about.jqmWindow").jqm({closeClass: 'close'}).jqmShow();
+        });
 
-        // embedControlDiv.index = 2;
-        // map.controls[google.maps.ControlPosition.TOP_RIGHT].push(embedControlDiv);
-
-        var embedControlDiv = document.createElement('div');
-        var embedControl = new ClippyControl(embedControlDiv, map, "Hello world");
-
-        embedControlDiv.index = 2;
-        map.controls[google.maps.ControlPosition.TOP_RIGHT].push(embedControlDiv);
-
-        // Clippy
-
-        // var clippyControlDiv = document.createElement('div');
-        // clippyControlDiv.index = 2;
-        // map.controls[google.maps.ControlPosition.TOP_RIGHT].push(clippyControlDiv);
-
-        // swfobject.embedSWF("clippy.swf", clippyControlDiv, 14, 14,
-        //     "10", false, {text: "Hello world"}, {scale: "noscale"});
     }
 
-    google.maps.event.addDomListener(window, 'load', initialize);
+    google.maps.event.addDomListener(window, 'load', function () {
+      
+      initialize();
+
+      var autoSelect = function() {
+        $(this).focus().select();
+
+        return this;
+      };
+
+      $("#embed-code").click(autoSelect);
+
+    });
     </script>
 </head>
 <body>
     <div id="map_canvas"></div>
+
+    <div class="embed jqmWindow">
+      <h2>Embed<a class="small close" href="#">Close</a></h2>
+
+      <div>
+      <p>If you would like to embed this map on your blog or website, use this code:</p>
+      <textarea id="embed-code" class="embed-code b2-text well" rows="1">&lt;iframe width=&quot;100%&quot; height=&quot;100%&quot; scrolling=&quot;no&quot; src=&quot;//fco-bba-2012.s3-website-eu-west-1.amazonaws.com/map.html&quot;&gt;&lt;/iframe&gt;</textarea>
+      </div>
+    </div>
+
+    <div class="about jqmWindow">
+      <h2>About<a class="small close" href="#">Close</a></h2>
+
+      <p>These figures have been compiled from records of consular assistance provided by the Foreign and Commonwealth Office between April 2011 and March 2012. The combined data is publicly available as <a href="http://bit.ly/bba-data-2012" target="_top">a Google spreadsheet</a>.</p>
+
+      <p class="small">Design inspired by the <a href="http://www.guardian.co.uk/news/datablog" target="_top">Guardian Datablog</a>.</p>
+      <p class="small">Licensed under a <a href="http://creativecommons.org/licenses/by/3.0/" target="_top">Creative Commons Attribution 3.0 Unported License</a>.</p>
+    </div>
 </body>
 </html>
