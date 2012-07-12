@@ -370,6 +370,8 @@
         map = new google.maps.Map(document.getElementById('map_canvas'), {
           center: center,
           zoom: zoom,
+          minZoom: 2,
+          maxZoom: 8,
           mapTypeId: google.maps.MapTypeId.ROADMAP,
           disableDefaultUI: true,
           panControl: true,
@@ -636,7 +638,7 @@
     <div class="about jqmWindow">
       <h2>Britons in trouble abroad<a class="small close" href="#">Close</a></h2>
 
-      <p>Total numbers of incidents requiring consular assistance from the Foreign and Commonwealth Office between April 2011 and March 2012, listed by country.</p>
+      <p>Total numbers of incidents requiring consular assistance from the <a href="http://www.fco.gov.uk/">Foreign and Commonwealth Office</a> between April 2011 and March 2012, listed by country.</p>
       
       <p>These figures have been compiled from records of consular assistance provided by the Foreign and Commonwealth Office between April 2011 and March 2012. The combined data is publicly available as <a href="http://bit.ly/bba-data-2012" target="_top">a Google spreadsheet</a>.</p>
 
