@@ -70,9 +70,9 @@
     var columns = {
       'Total assistance': [
         {
-          'min': 0,
+          'min': 1,
           'max': 5,
-          'color': colors.NA
+          'color': colors.COLD
         },
         {
           'min': 5,
@@ -97,9 +97,9 @@
       ],
       'Drug arrests': [
         {
-          'min': 0,
+          'min': 1,
           'max': 5,
-          'color': colors.NA
+          'color': colors.COLD
         },
         {
           'min': 5,
@@ -119,9 +119,9 @@
       ],
       'Total arrests or detentions': [
         {
-          'min': 0,
+          'min': 1,
           'max': 5,
-          'color': colors.NA
+          'color': colors.COLD
         },
         {
           'min': 5,
@@ -146,9 +146,9 @@
       ],
       'Deaths': [
         {
-          'min': 0,
+          'min': 1,
           'max': 5,
-          'color': colors.NA
+          'color': colors.COLD
         },
         {
           'min': 5,
@@ -173,9 +173,9 @@
       ],
       'Hospitalisation': [
         {
-          'min': 0,
+          'min': 1,
           'max': 5,
-          'color': colors.NA
+          'color': colors.COLD
         },
         {
           'min': 5,
@@ -200,9 +200,9 @@
       ],
       'Reports of rape': [
         {
-          'min': 0,
+          'min': 1,
           'max': 5,
-          'color': colors.NA
+          'color': colors.COLD
         },
         {
           'min': 5,
@@ -222,9 +222,9 @@
       ],
       'Reports of sexual assault': [
         {
-          'min': 0,
+          'min': 1,
           'max': 5,
-          'color': colors.NA
+          'color': colors.COLD
         },
         {
           'min': 5,
@@ -244,9 +244,9 @@
       ],
       'Issue of emergency travel documentation': [
         {
-          'min': 0,
+          'min': 1,
           'max': 5,
-          'color': colors.NA
+          'color': colors.COLD
         },
         {
           'min': 5,
@@ -271,9 +271,9 @@
       ],
       'Other kinds of assistance': [
         {
-          'min': 0,
+          'min': 1,
           'max': 5,
-          'color': colors.NA
+          'color': colors.COLD
         },
         {
           'min': 5,
@@ -471,7 +471,7 @@
             var renderedContent = (template
               .replace(/\{\{country\}\}/gm, opts.row.Country.value, 'm')
               .replace(/\{\{key\}\}/gm, currentColumn)
-              .replace(/\{\{value\}\}/gm, value >= 5 && value || "Below threshold for counting")
+              .replace(/\{\{value\}\}/gm, value)
               .replace(/\{\{path\}\}/gm, opts.row.path.value));
 
             infoWindow.close()
@@ -593,9 +593,6 @@
         controlTextList.push('</b></p>');
         for(defined_style in defined_styles) {
           var style = defined_styles[defined_style];
-          if (style.max <= 5) {
-            continue;
-          }
           controlTextList.push('<div style="background-color: ');
           controlTextList.push(style.color);
           controlTextList.push('; height: 20px; width: 20px; margin: 3px; float: left;"></div>');
