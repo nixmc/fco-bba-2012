@@ -471,7 +471,7 @@
             var renderedContent = (template
               .replace(/\{\{country\}\}/gm, opts.row.Country.value, 'm')
               .replace(/\{\{key\}\}/gm, currentColumn)
-              .replace(/\{\{value\}\}/gm, value)
+              .replace(/\{\{value\}\}/gm, value || '0')
               .replace(/\{\{path\}\}/gm, opts.row.path.value));
 
             infoWindow.close()
