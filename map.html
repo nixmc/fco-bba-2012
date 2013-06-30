@@ -1,8 +1,8 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html>
 <head>
-  <title>British Foreign &amp; Commonwealth Office (FCO) | Britons in trouble abroad | 2011-2012</title>
-    <link rel="icon" type="image/vnd.microsoft.icon" href="http://www.fco.gov.uk/sitepack/layouts/xm_supplied/icon/favicon.ico" />
+  <title>British Foreign &amp; Commonwealth Office (FCO) | Britons in trouble abroad | 2012-2013</title>
+    <link rel="icon" type="image/vnd.microsoft.icon" href="https://assets.digital.cabinet-office.gov.uk/static/favicon-447e4ac1ab790342660eacfe3dcce264.ico" />
     <link rel="stylesheet" type="text/css" href="css/jqModal.css" />
     <style type="text/css">
     html, body, #map_canvas {
@@ -31,11 +31,11 @@
     .close {
       float: right;
     }
-    .googft-info-window-title { 
+    .googft-info-window-title {
         margin: 0 0 0.5em 0;
         font-weight: bold;
     }
-    .googft-info-window-info { 
+    .googft-info-window-info {
         margin: 0 0 1em 0;
         font-size: 0.9em;
     }
@@ -50,7 +50,7 @@
         padding-top: 0.5em;
     }
     </style>
-    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
     <script type="text/javascript" src="//maps.googleapis.com/maps/api/js?v=3.7&amp;sensor=false"></script>
     <script type="text/javascript" src="js/jqModal.js"></script>
     <script type="text/javascript">
@@ -142,7 +142,7 @@
           'min': 1000,
           'max': 2000,
           'color': colors.HOT
-        }      
+        }
       ],
       'Deaths': [
         {
@@ -169,7 +169,7 @@
           'min': 1000,
           'max': 2000,
           'color': colors.HOT
-        }      
+        }
       ],
       'Hospitalisation': [
         {
@@ -196,7 +196,7 @@
           'min': 1000,
           'max': 2000,
           'color': colors.HOT
-        }      
+        }
       ],
       'Reports of rape': [
         {
@@ -218,7 +218,7 @@
           'min': 15,
           'max': 20,
           'color': colors.HOT
-        }      
+        }
       ],
       'Reports of sexual assault': [
         {
@@ -240,7 +240,7 @@
           'min': 15,
           'max': 25,
           'color': colors.HOT
-        }      
+        }
       ],
       'Issue of emergency travel documentation': [
         {
@@ -267,7 +267,7 @@
           'min': 1000,
           'max': 6000,
           'color': colors.HOT
-        }      
+        }
       ],
       'Other kinds of assistance': [
         {
@@ -294,7 +294,7 @@
           'min': 100,
           'max': 600,
           'color': colors.HOT
-        }      
+        }
       ]
     };
 
@@ -331,7 +331,7 @@
             callback.call(this);
         });
     }
-    
+
     function LayerControl(controlDiv, options, map, callback) {
         controlDiv.style.padding = '5px';
 
@@ -387,50 +387,50 @@
               { visibility: "off" }
             ]
           },
-          { 
-            elementType: "labels", 
-            stylers: [ 
-              { saturation: -100 } 
-            ] 
+          {
+            elementType: "labels",
+            stylers: [
+              { saturation: -100 }
+            ]
           },
-          { 
+          {
             featureType: "poi",
-            elementType: "all", 
-            stylers: [ 
+            elementType: "all",
+            stylers: [
               { visibility: "off" }
-            ] 
+            ]
           },
-          { 
+          {
             featureType: "landscape",
-            elementType: "all", 
-            stylers: [ 
+            elementType: "all",
+            stylers: [
               { visibility: "off" }
-            ] 
+            ]
           },
-          { 
+          {
             featureType: "transit",
-            elementType: "all", 
-            stylers: [ 
+            elementType: "all",
+            stylers: [
               { visibility: "off" }
-            ] 
+            ]
           },
-          { 
-            featureType: "road", 
-            elementType: "all", 
-            stylers: [ 
+          {
+            featureType: "road",
+            elementType: "all",
+            stylers: [
               { visibility: "off" }
-            ] 
+            ]
           }
-          ,{ 
-            featureType: "water", 
-            elementType: "geometry", 
-            stylers: [ 
-              { visibility: "on" }, 
+          ,{
+            featureType: "water",
+            elementType: "geometry",
+            stylers: [
+              { visibility: "on" },
               { hue: "#44a2bc" },
-              { lightness: -28 }, 
-              { saturation: -20 }, 
+              { lightness: -28 },
+              { saturation: -20 },
               { gamma: 1.0 }
-            ] 
+            ]
           }
         ];
 
@@ -451,9 +451,9 @@
           },
           suppressInfoWindows: true
         });
-        
+
         var clickListener = (function() {
-          
+
           var template = "<div style='font-family:sans-serif' class='googft-info-window'>\
               <div class='googft-info-window-div googft-info-window-title'>\
                 <span>{{country}}</span><br>\
@@ -607,7 +607,7 @@
     }
 
     google.maps.event.addDomListener(window, 'load', function () {
-      
+
       initialize();
 
       var autoSelect = function() {
@@ -622,30 +622,31 @@
 </head>
 <body>
     <div id="map_canvas"></div>
-    
+
     <div class="embed jqmWindow">
       <h2>Embed this map<a class="small close" href="#">Close</a></h2>
 
       <div>
       <p>If you would like to embed this map on your blog or website, use this code:</p>
-      <textarea id="embed-code" class="embed-code b2-text well" rows="1">&lt;iframe width=&quot;100%&quot; height=&quot;100%&quot; scrolling=&quot;no&quot; src=&quot;//fco-bba-2012.s3-website-eu-west-1.amazonaws.com/map.html&quot;&gt;&lt;/iframe&gt;</textarea>
+      <textarea id="embed-code" class="embed-code b2-text well" rows="1">&lt;iframe width=&quot;100%&quot; height=&quot;100%&quot; scrolling=&quot;no&quot; src=&quot;//fco-bba-2013.s3-website-eu-west-1.amazonaws.com/map.html&quot;&gt;&lt;/iframe&gt;</textarea>
       </div>
     </div>
 
     <div class="about jqmWindow">
       <h2>Britons in trouble abroad<a class="small close" href="#">Close</a></h2>
 
-      <p>Total numbers of incidents requiring consular assistance from the <a href="http://www.fco.gov.uk/">Foreign and Commonwealth Office</a> between April 2011 and March 2012, listed by country.</p>
-      
-      <p>These figures have been compiled from records of consular assistance provided by the Foreign and Commonwealth Office between April 2011 and March 2012. The combined data is publicly available as <a href="http://bit.ly/bba-data-2012" target="_top">a Google spreadsheet</a>.</p>
+      <p>Total numbers of incidents requiring consular assistance from the <a href="http://www.fco.gov.uk/">Foreign and Commonwealth Office</a> between April 2012 and March 2013, listed by country.</p>
+
+      <p>These figures have been compiled from records of consular assistance provided by the Foreign and Commonwealth Office between April 2012 and March 2013. The combined data is publicly available as <a href="http://bit.ly/bba-data-2013" target="_top">a Google spreadsheet</a>.</p>
 
       <p class="small">Design inspired by the <a href="http://www.guardian.co.uk/news/datablog" target="_top">Guardian Datablog</a>.</p>
       <p class="small">Licensed under a <a href="http://creativecommons.org/licenses/by/3.0/" target="_top">Creative Commons Attribution 3.0 Unported License</a>.</p>
     </div>
-    
-    <script type="text/javascript">
+
+  <script type="text/javascript">
+
     var _gaq = _gaq || [];
-    _gaq.push(['_setAccount', 'UA-1903723-10']);
+    _gaq.push(['_setAccount', 'UA-42130617-1']);
     _gaq.push(['_trackPageview']);
 
     (function() {
@@ -653,6 +654,7 @@
       ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
       var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
     })();
-    </script>
+
+  </script>
 </body>
 </html>
