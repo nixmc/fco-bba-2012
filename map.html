@@ -3,6 +3,7 @@
 <head>
   <title>British Foreign &amp; Commonwealth Office (FCO) | Britons in trouble abroad | 2012-2013</title>
     <link rel="icon" type="image/vnd.microsoft.icon" href="https://assets.digital.cabinet-office.gov.uk/static/favicon-447e4ac1ab790342660eacfe3dcce264.ico" />
+    <link rel="stylesheet" type="text/css" media="screen" href="bootstrap/css/bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="css/jqModal.css" />
     <style type="text/css">
     html, body, #map_canvas {
@@ -22,7 +23,7 @@
       overflow: hidden;
       resize: none;
       white-space: nowrap;
-      width: 576px;
+      width: 382px;
       padding: 9px;
     }
     .small {
@@ -49,6 +50,12 @@
     .key-text {
         padding-top: 0.5em;
     }
+    .jqmWindow {
+        max-height: 300px;
+        width: 400px;
+        padding: 8px;
+        margin-left: -210px;
+    }
     </style>
     <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
     <script type="text/javascript" src="//maps.googleapis.com/maps/api/js?v=3.7&amp;sensor=false"></script>
@@ -56,7 +63,7 @@
     <script type="text/javascript">
     var center = new google.maps.LatLng(32.0000, -5.0000);
     var zoom = 2;
-    var legend_width = '150px';
+    var legend_width = '130px';
     var tableid = '1Y_P83xKsV9eqt5wG_0cEvG2lAE0vwrEmXAU3rlY';
     var location_column = 'geometry';
     var colors = {
@@ -67,6 +74,8 @@
       'WARM': '#bc234b',
       'HOT': '#910f30'
     };
+    // TODO:
+    // Revisit min, max values below for each column
     var columns = {
       'Total assistance': [
         {
@@ -565,17 +574,18 @@
 
     // Generate the content for the legend
     function Legend(controlDiv, column) {
-        controlDiv.style.padding = '10px';
+        controlDiv.style.padding = '5px';
         var controlUI = document.createElement('div');
-        controlUI.style.backgroundColor = 'white';
+        controlUI.style.backgroundColor = 'rgba(255,255,255,0.9)';
         controlUI.style.borderStyle = 'solid';
         controlUI.style.borderWidth = '1px';
+        controlUI.style.lineHeight = 'normal';
         controlUI.style.width = legend_width;
         controlUI.title = 'Legend';
         controlDiv.appendChild(controlUI);
         var controlText = document.createElement('div');
         controlText.style.fontFamily = 'Arial,sans-serif';
-        controlText.style.fontSize = '12px';
+        controlText.style.fontSize = '11px';
         controlText.style.paddingLeft = '4px';
         controlText.style.paddingRight = '4px';
 
@@ -588,14 +598,14 @@
 
         // Generate the content for the legend using colors from object
         var controlTextList = new Array();
-        controlTextList.push('<p><b>');
+        controlTextList.push('<p style="margin: 12px 0;"><b>');
         controlTextList.push(column);
         controlTextList.push('</b></p>');
         for(defined_style in defined_styles) {
           var style = defined_styles[defined_style];
           controlTextList.push('<div style="background-color: ');
           controlTextList.push(style.color);
-          controlTextList.push('; height: 20px; width: 20px; margin: 3px; float: left;"></div>');
+          controlTextList.push('; height: 18px; width: 18px; margin: 3px 3px 3px 0; float: left;"></div>');
           controlTextList.push('<div class="key-text">' + style.min);
           controlTextList.push(' to ');
           controlTextList.push(style.max + '</div>');
