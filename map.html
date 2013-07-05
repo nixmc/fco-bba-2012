@@ -64,7 +64,7 @@
     var center = new google.maps.LatLng(32.0000, -5.0000);
     var zoom = 2;
     var legend_width = '130px';
-    var tableid = '1Y_P83xKsV9eqt5wG_0cEvG2lAE0vwrEmXAU3rlY';
+    var tableid = '1UlALyTtNZOa-LXd3IdJO9piznQ2sAMT_xJioEcA';
     var location_column = 'geometry';
     var colors = {
       'NA': '#ffffff',
@@ -74,10 +74,13 @@
       'WARM': '#bc234b',
       'HOT': '#910f30'
     };
-    // TODO:
-    // Revisit min, max values below for each column
     var columns = {
       'Total assistance': [
+        {
+          'min': 0,
+          'max': 1,
+          'color': colors.NA
+        },
         {
           'min': 1,
           'max': 5,
@@ -106,6 +109,11 @@
       ],
       'Drug arrests': [
         {
+          'min': 0,
+          'max': 1,
+          'color': colors.NA
+        },
+        {
           'min': 1,
           'max': 5,
           'color': colors.COLD
@@ -127,6 +135,11 @@
         }
       ],
       'Total arrests or detentions': [
+        {
+          'min': 0,
+          'max': 1,
+          'color': colors.NA
+        },
         {
           'min': 1,
           'max': 5,
@@ -155,6 +168,11 @@
       ],
       'Deaths': [
         {
+          'min': 0,
+          'max': 1,
+          'color': colors.NA
+        },
+        {
           'min': 1,
           'max': 5,
           'color': colors.COLD
@@ -181,6 +199,11 @@
         }
       ],
       'Hospitalisation': [
+        {
+          'min': 0,
+          'max': 1,
+          'color': colors.NA
+        },
         {
           'min': 1,
           'max': 5,
@@ -209,6 +232,11 @@
       ],
       'Reports of rape': [
         {
+          'min': 0,
+          'max': 1,
+          'color': colors.NA
+        },
+        {
           'min': 1,
           'max': 5,
           'color': colors.COLD
@@ -231,6 +259,11 @@
       ],
       'Reports of sexual assault': [
         {
+          'min': 0,
+          'max': 1,
+          'color': colors.NA
+        },
+        {
           'min': 1,
           'max': 5,
           'color': colors.COLD
@@ -252,6 +285,11 @@
         }
       ],
       'Issue of emergency travel documentation': [
+        {
+          'min': 0,
+          'max': 1,
+          'color': colors.NA
+        },
         {
           'min': 1,
           'max': 5,
@@ -279,6 +317,11 @@
         }
       ],
       'Other kinds of assistance': [
+        {
+          'min': 0,
+          'max': 1,
+          'color': colors.NA
+        },
         {
           'min': 1,
           'max': 5,
@@ -603,6 +646,10 @@
         controlTextList.push('</b></p>');
         for(defined_style in defined_styles) {
           var style = defined_styles[defined_style];
+          if (style.color === colors.NA) {
+            // Skip NAs
+            continue;
+          }
           controlTextList.push('<div style="background-color: ');
           controlTextList.push(style.color);
           controlTextList.push('; height: 18px; width: 18px; margin: 3px 3px 3px 0; float: left;"></div>');
