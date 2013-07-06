@@ -601,6 +601,7 @@
     function updateLegend(column) {
         var legendDiv = document.createElement('div');
         var legend = new Legend(legendDiv, column);
+        legendDiv.id = "key";
         legendDiv.index = 1;
         map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].pop();
         map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(legendDiv);
@@ -634,6 +635,7 @@
         var controlTextList = new Array();
         controlTextList.push('<p style="margin: 8px 0;"><b>');
         controlTextList.push(column);
+        // controlTextList.push("<a class='close' href='#'>X</a>")
         controlTextList.push('</b></p>');
         for(defined_style in defined_styles) {
           var style = defined_styles[defined_style];
