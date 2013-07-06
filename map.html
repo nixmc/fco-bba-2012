@@ -53,7 +53,7 @@
     .fco-link {
         position: absolute;
         background: url('/fco_background.gif') top left repeat;
-        padding-left: 50px;
+        padding-left: 43px;
         height: 44px;
         width: 100%;
         z-index: 9999;
@@ -63,6 +63,10 @@
         width: 400px;
         padding: 8px;
         margin-left: -210px;
+    }
+    #key .close {
+      font-size: 10px;
+      line-height: normal;
     }
     </style>
     <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
@@ -352,7 +356,7 @@
         var controlText = document.createElement('div');
         controlText.style.fontFamily = 'Arial,sans-serif';
         controlText.style.fontSize = '12px';
-        controlText.style.width = '12px';
+        controlText.style.minWidth = '12px';
         controlText.style.padding = '4px';
         controlText.innerHTML = label;
         $controlUI.append(controlText);
@@ -376,7 +380,7 @@
 
         controlUI.style.fontFamily = 'Arial,sans-serif';
         controlUI.style.fontSize = '12px';
-        controlUI.title = 'Click to change the layer displayed';
+        controlUI.title = 'Change the layer displayed';
 
         controlDiv.appendChild(controlUI);
 
@@ -530,21 +534,21 @@
         map.controls[google.maps.ControlPosition.TOP_RIGHT].push(layerControlDiv);
 
         // Add popup control
-        addGenericControl(map, "&#8599;", "Click to open map in a separate window", 2, function() {
+        addGenericControl(map, "&#8599;", "Open map in a separate window", 2, function() {
             var w = window.open('/map.html', 'map', 'height=768,width=1024');
             if (window.focus) {w.focus()}
             return false;
         });
 
         // Add embed control
-        addGenericControl(map, "&darr;", "Click to get the embed code for this map", 2, function() {
+        addGenericControl(map, "&lt;&nbsp;&gt;", "Get the embed code for this map", 2, function() {
             $(".embed.jqmWindow").jqm({closeClass: 'close'}).jqmShow();
 
             $("#embed-code").focus().select();
         });
 
         // Add about control
-        addGenericControl(map, "?", "Click to read about this map", 1, function() {
+        addGenericControl(map, "?", "About this map", 1, function() {
             $(".about.jqmWindow").jqm({closeClass: 'close'}).jqmShow();
         });
 
@@ -626,6 +630,11 @@
 
         controlText.innerHTML = legendContent(column);
         controlUI.appendChild(controlText);
+
+        // Hide the key when the close button is clicked
+        $(controlText).find(".close").click(function() {
+            $(this).parents("#key").hide();
+        });
     }
 
     function legendContent(column) {
@@ -635,7 +644,7 @@
         var controlTextList = new Array();
         controlTextList.push('<p style="margin: 8px 0;"><b>');
         controlTextList.push(column);
-        // controlTextList.push("<a class='close' href='#'>X</a>")
+        controlTextList.push("<a class='close' href='#' title='Close'>X</a>")
         controlTextList.push('</b></p>');
         for(defined_style in defined_styles) {
           var style = defined_styles[defined_style];
