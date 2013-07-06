@@ -356,14 +356,14 @@
         // Set CSS styles for the DIV containing the control
         // Setting padding to 5 px will offset the control
         // from the edge of the map.
-        controlDiv.style.padding = '5px';
+        controlDiv.style.paddingTop = '5px';
+        controlDiv.style.paddingRight = '5px';
 
         // Set CSS for the control border.
         // Do this using jQuery because IE8 is mental
         var controlUI = document.createElement('div'),
             $controlUI = $(controlUI);
         $controlUI.css('background-color', 'rgba(255,255,255,0.9)');
-        $controlUI.css('border-style', 'solid');
         $controlUI.css('border-width', '1px');
         $controlUI.css('cursor', 'pointer');
         $controlUI.css('text-align', 'center');
@@ -374,6 +374,7 @@
         var controlText = document.createElement('div');
         controlText.style.fontFamily = 'Arial,sans-serif';
         controlText.style.fontSize = '12px';
+        controlText.style.width = '12px';
         controlText.style.padding = '4px';
         controlText.innerHTML = label;
         $controlUI.append(controlText);
@@ -526,7 +527,7 @@
               .replace(/\{\{value\}\}/gm, value || '0')
               .replace(/\{\{path\}\}/gm, opts.row.path.value));
 
-            infoWindow.close()
+            infoWindow.close();
             infoWindow.setContent(renderedContent);
             infoWindow.setPosition(opts.latLng);
             infoWindow.open(map);
@@ -545,15 +546,22 @@
         layerControlDiv.index = 3;
         map.controls[google.maps.ControlPosition.TOP_RIGHT].push(layerControlDiv);
 
+        // Add popup control
+        addGenericControl(map, "&#8599;", "Click to open map in a separate window", 2, function() {
+            var w = window.open('/map.html', 'map', 'height=768,width=1024');
+            if (window.focus) {w.focus()}
+            return false;
+        });
+
         // Add embed control
-        addGenericControl(map, "Embed", "Click to get the embed code for this map", 2, function() {
+        addGenericControl(map, "&darr;", "Click to get the embed code for this map", 2, function() {
             $(".embed.jqmWindow").jqm({closeClass: 'close'}).jqmShow();
 
             $("#embed-code").focus().select();
         });
 
         // Add about control
-        addGenericControl(map, "About", "Click to read about this map", 1, function() {
+        addGenericControl(map, "?", "Click to read about this map", 1, function() {
             $(".about.jqmWindow").jqm({closeClass: 'close'}).jqmShow();
         });
 
@@ -685,16 +693,16 @@
 
       <div>
       <p>If you would like to embed this map on your blog or website, use this code:</p>
-      <textarea id="embed-code" class="embed-code b2-text well" rows="1">&lt;iframe width=&quot;425&quot; height=&quot;350&quot; scrolling=&quot;no&quot; frameborder=&quot;0&quot; marginheight=&quot;0&quot; marginwidth=&quot;0&quot; src=&quot;//fco-bba-2013.s3-website-eu-west-1.amazonaws.com/map.html&quot;&gt;&lt;/iframe&gt;</textarea>
+      <textarea id="embed-code" class="embed-code b2-text well" rows="1">&lt;iframe width=&quot;460&quot; height=&quot;350&quot; scrolling=&quot;no&quot; frameborder=&quot;0&quot; marginheight=&quot;0&quot; marginwidth=&quot;0&quot; src=&quot;//fco-bba-2013.s3-website-eu-west-1.amazonaws.com/map.html&quot;&gt;&lt;/iframe&gt;</textarea>
       </div>
     </div>
 
     <div class="about jqmWindow">
       <h2>Britons in trouble abroad<a class="small close" href="#">Close</a></h2>
 
-      <p>Total numbers of incidents requiring consular assistance from the <a href="http://www.fco.gov.uk/">Foreign and Commonwealth Office</a> between April 2012 and March 2013, listed by country.</p>
+      <p>Total numbers of incidents requiring consular assistance from the <a href="http://www.fco.gov.uk/">Foreign &amp; Commonwealth Office</a> between April 2012 and March 2013, listed by country.</p>
 
-      <p>These figures have been compiled from records of consular assistance provided by the Foreign and Commonwealth Office between April 2012 and March 2013. The combined data is publicly available as <a href="http://bit.ly/bba-data-2013" target="_top">a Google spreadsheet</a>.</p>
+      <p>These figures have been compiled from records of consular assistance provided by the Foreign &amp; Commonwealth Office between April 2012 and March 2013. The combined data is publicly available as <a href="http://bit.ly/bba-data-2013" target="_top">a Google spreadsheet</a>.</p>
 
       <p class="small">Design inspired by the <a href="http://www.guardian.co.uk/news/datablog" target="_top">Guardian Datablog</a>.</p>
       <p class="small">Licensed under a <a href="http://creativecommons.org/licenses/by/3.0/" target="_top">Creative Commons Attribution 3.0 Unported License</a>.</p>
