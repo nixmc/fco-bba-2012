@@ -50,6 +50,14 @@
     .key-text {
         padding-top: 0.5em;
     }
+    .fco-link {
+        position: absolute;
+        background: url('/fco_background.gif') top left repeat;
+        padding-left: 50px;
+        height: 44px;
+        width: 100%;
+        z-index: 9999;
+    }
     .jqmWindow {
         max-height: 300px;
         width: 400px;
@@ -427,7 +435,7 @@
           maxZoom: 8,
           mapTypeId: google.maps.MapTypeId.ROADMAP,
           disableDefaultUI: true,
-          panControl: true,
+          panControl: false,
           zoomControl: true,
           scaleControl: true
         });
@@ -538,6 +546,11 @@
         google.maps.event.addListener(layer, 'click', clickListener);
 
         layer.setMap(map);
+
+        // Logo
+        var logo = $(".fco-link")[0];
+        map.controls[google.maps.ControlPosition.TOP_CENTER].push(logo);
+
 
         // Layer controls
         var layerControlDiv = document.createElement('div');
@@ -687,6 +700,9 @@
 </head>
 <body>
     <div id="map_canvas"></div>
+    <a href="http://www.fco.gov.uk/en/" target="_blank" class="fco-link">
+      <img id="fco_attr" src="logo_fco.gif" alt="" width="146" height="44">
+    </a>
 
     <div class="embed jqmWindow">
       <h2>Embed this map<a class="small close" href="#">Close</a></h2>
