@@ -1,0 +1,5 @@
+BeautifulSoup==3.2.1
+distribute==0.6.31
+ipython==0.12.1
+simplekml==1.2.2
+wsgiref==0.1.2

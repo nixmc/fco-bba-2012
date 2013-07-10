@@ -1,8 +1,9 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html>
 <head>
-  <title>British Foreign &amp; Commonwealth Office (FCO) | Britons in trouble abroad | 2011-2012</title>
-    <link rel="icon" type="image/vnd.microsoft.icon" href="http://www.fco.gov.uk/sitepack/layouts/xm_supplied/icon/favicon.ico" />
+  <title>British Foreign &amp; Commonwealth Office (FCO) | Britons in trouble abroad | 2012-2013</title>
+    <link rel="icon" type="image/vnd.microsoft.icon" href="https://assets.digital.cabinet-office.gov.uk/static/favicon-447e4ac1ab790342660eacfe3dcce264.ico" />
+    <link rel="stylesheet" type="text/css" media="screen" href="bootstrap/css/bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="css/jqModal.css" />
     <style type="text/css">
     html, body, #map_canvas {
@@ -22,7 +23,7 @@
       overflow: hidden;
       resize: none;
       white-space: nowrap;
-      width: 576px;
+      width: 382px;
       padding: 9px;
     }
     .small {
@@ -31,11 +32,11 @@
     .close {
       float: right;
     }
-    .googft-info-window-title { 
+    .googft-info-window-title {
         margin: 0 0 0.5em 0;
         font-weight: bold;
     }
-    .googft-info-window-info { 
+    .googft-info-window-info {
         margin: 0 0 1em 0;
         font-size: 0.9em;
     }
@@ -49,15 +50,32 @@
     .key-text {
         padding-top: 0.5em;
     }
+    .fco-link {
+        position: absolute;
+        background: url('/fco_background.gif') top left repeat;
+        padding-left: 43px;
+        height: 44px;
+        width: 100%;
+    }
+    .jqmWindow {
+        max-height: 300px;
+        width: 400px;
+        padding: 8px;
+        margin-left: -210px;
+    }
+    #key .close {
+      font-size: 10px;
+      line-height: normal;
+    }
     </style>
-    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
     <script type="text/javascript" src="//maps.googleapis.com/maps/api/js?v=3.7&amp;sensor=false"></script>
     <script type="text/javascript" src="js/jqModal.js"></script>
     <script type="text/javascript">
     var center = new google.maps.LatLng(32.0000, -5.0000);
     var zoom = 2;
-    var legend_width = '150px';
-    var tableid = '1ianocssGPCRf2U4vCEJLQruEQ4bYYi1Ei7TqGEI';
+    var legend_width = '130px';
+    var tableid = '1UlALyTtNZOa-LXd3IdJO9piznQ2sAMT_xJioEcA';
     var location_column = 'geometry';
     var colors = {
       'NA': '#ffffff',
@@ -70,7 +88,7 @@
     var columns = {
       'Total assistance': [
         {
-          'min': 1,
+          'min': 0,
           'max': 5,
           'color': colors.COLD
         },
@@ -91,12 +109,17 @@
         },
         {
           'min': 1000,
-          'max': 6000,
+          'max': 5000,
           'color': colors.HOT
         }
       ],
       'Drug arrests': [
         {
+          'min': 0,
+          'max': 1,
+          'color': colors.NA
+        },
+        {
           'min': 1,
           'max': 5,
           'color': colors.COLD
@@ -108,18 +131,18 @@
         },
         {
           'min': 10,
-          'max': 50,
+          'max': 100,
           'color': colors.WARM
         },
         {
-          'min': 50,
-          'max': 150,
+          'min': 100,
+          'max': 200,
           'color': colors.HOT
         }
       ],
       'Total arrests or detentions': [
         {
-          'min': 1,
+          'min': 0,
           'max': 5,
           'color': colors.COLD
         },
@@ -142,11 +165,11 @@
           'min': 1000,
           'max': 2000,
           'color': colors.HOT
-        }      
+        }
       ],
       'Deaths': [
         {
-          'min': 1,
+          'min': 0,
           'max': 5,
           'color': colors.COLD
         },
@@ -169,11 +192,11 @@
           'min': 1000,
           'max': 2000,
           'color': colors.HOT
-        }      
+        }
       ],
       'Hospitalisation': [
         {
-          'min': 1,
+          'min': 0,
           'max': 5,
           'color': colors.COLD
         },
@@ -189,17 +212,22 @@
         },
         {
           'min': 100,
-          'max': 1000,
+          'max': 500,
           'color': colors.WARM
         },
         {
-          'min': 1000,
-          'max': 2000,
+          'min': 500,
+          'max': 1000,
           'color': colors.HOT
-        }      
+        }
       ],
       'Reports of rape': [
         {
+          'min': 0,
+          'max': 1,
+          'color': colors.NA
+        },
+        {
           'min': 1,
           'max': 5,
           'color': colors.COLD
@@ -211,17 +239,22 @@
         },
         {
           'min': 10,
-          'max': 15,
+          'max': 20,
           'color': colors.WARM
         },
         {
-          'min': 15,
-          'max': 20,
+          'min': 20,
+          'max': 50,
           'color': colors.HOT
-        }      
+        }
       ],
       'Reports of sexual assault': [
         {
+          'min': 0,
+          'max': 1,
+          'color': colors.NA
+        },
+        {
           'min': 1,
           'max': 5,
           'color': colors.COLD
@@ -233,18 +266,18 @@
         },
         {
           'min': 10,
-          'max': 15,
+          'max': 20,
           'color': colors.WARM
         },
         {
-          'min': 15,
-          'max': 25,
+          'min': 20,
+          'max': 50,
           'color': colors.HOT
-        }      
+        }
       ],
       'Issue of emergency travel documentation': [
         {
-          'min': 1,
+          'min': 0,
           'max': 5,
           'color': colors.COLD
         },
@@ -267,11 +300,11 @@
           'min': 1000,
           'max': 6000,
           'color': colors.HOT
-        }      
+        }
       ],
       'Other kinds of assistance': [
         {
-          'min': 1,
+          'min': 0,
           'max': 5,
           'color': colors.COLD
         },
@@ -294,7 +327,7 @@
           'min': 100,
           'max': 600,
           'color': colors.HOT
-        }      
+        }
       ]
     };
 
@@ -304,14 +337,14 @@
         // Set CSS styles for the DIV containing the control
         // Setting padding to 5 px will offset the control
         // from the edge of the map.
-        controlDiv.style.padding = '5px';
+        controlDiv.style.paddingTop = '5px';
+        controlDiv.style.paddingRight = '5px';
 
         // Set CSS for the control border.
         // Do this using jQuery because IE8 is mental
         var controlUI = document.createElement('div'),
             $controlUI = $(controlUI);
-        $controlUI.css('background-color', 'rgba(255,255,255,0.9)');
-        $controlUI.css('border-style', 'solid');
+        $controlUI.css('background-color', 'white');
         $controlUI.css('border-width', '1px');
         $controlUI.css('cursor', 'pointer');
         $controlUI.css('text-align', 'center');
@@ -322,6 +355,7 @@
         var controlText = document.createElement('div');
         controlText.style.fontFamily = 'Arial,sans-serif';
         controlText.style.fontSize = '12px';
+        controlText.style.minWidth = '12px';
         controlText.style.padding = '4px';
         controlText.innerHTML = label;
         $controlUI.append(controlText);
@@ -331,7 +365,7 @@
             callback.call(this);
         });
     }
-    
+
     function LayerControl(controlDiv, options, map, callback) {
         controlDiv.style.padding = '5px';
 
@@ -345,7 +379,7 @@
 
         controlUI.style.fontFamily = 'Arial,sans-serif';
         controlUI.style.fontSize = '12px';
-        controlUI.title = 'Click to change the layer displayed';
+        controlUI.title = 'Change the layer displayed';
 
         controlDiv.appendChild(controlUI);
 
@@ -374,7 +408,7 @@
           maxZoom: 8,
           mapTypeId: google.maps.MapTypeId.ROADMAP,
           disableDefaultUI: true,
-          panControl: true,
+          panControl: false,
           zoomControl: true,
           scaleControl: true
         });
@@ -387,50 +421,50 @@
               { visibility: "off" }
             ]
           },
-          { 
-            elementType: "labels", 
-            stylers: [ 
-              { saturation: -100 } 
-            ] 
+          {
+            elementType: "labels",
+            stylers: [
+              { saturation: -100 }
+            ]
           },
-          { 
+          {
             featureType: "poi",
-            elementType: "all", 
-            stylers: [ 
+            elementType: "all",
+            stylers: [
               { visibility: "off" }
-            ] 
+            ]
           },
-          { 
+          {
             featureType: "landscape",
-            elementType: "all", 
-            stylers: [ 
+            elementType: "all",
+            stylers: [
               { visibility: "off" }
-            ] 
+            ]
           },
-          { 
+          {
             featureType: "transit",
-            elementType: "all", 
-            stylers: [ 
+            elementType: "all",
+            stylers: [
               { visibility: "off" }
-            ] 
+            ]
           },
-          { 
-            featureType: "road", 
-            elementType: "all", 
-            stylers: [ 
+          {
+            featureType: "road",
+            elementType: "all",
+            stylers: [
               { visibility: "off" }
-            ] 
+            ]
           }
-          ,{ 
-            featureType: "water", 
-            elementType: "geometry", 
-            stylers: [ 
-              { visibility: "on" }, 
+          ,{
+            featureType: "water",
+            elementType: "geometry",
+            stylers: [
+              { visibility: "on" },
               { hue: "#44a2bc" },
-              { lightness: -28 }, 
-              { saturation: -20 }, 
+              { lightness: -28 },
+              { saturation: -20 },
               { gamma: 1.0 }
-            ] 
+            ]
           }
         ];
 
@@ -451,9 +485,9 @@
           },
           suppressInfoWindows: true
         });
-        
+
         var clickListener = (function() {
-          
+
           var template = "<div style='font-family:sans-serif' class='googft-info-window'>\
               <div class='googft-info-window-div googft-info-window-title'>\
                 <span>{{country}}</span><br>\
@@ -462,7 +496,7 @@
                 <span><b>{{key}}:</b> {{value}}</span>\
               </div>\
               <div class='googft-info-window-div googft-info-window-additional'>\
-                <span><a href='http://www.fco.gov.uk{{path}}' title='Travel advice for {{country}}' target='_top'>Travel advice for {{country}}</a></span>\
+                <span><a href='http://www.gov.uk{{path}}' title='Travel advice for {{country}}' target='_top'>Travel advice for {{country}}</a></span>\
               </div>\
             </div>";
 
@@ -474,7 +508,7 @@
               .replace(/\{\{value\}\}/gm, value || '0')
               .replace(/\{\{path\}\}/gm, opts.row.path.value));
 
-            infoWindow.close()
+            infoWindow.close();
             infoWindow.setContent(renderedContent);
             infoWindow.setPosition(opts.latLng);
             infoWindow.open(map);
@@ -486,6 +520,11 @@
 
         layer.setMap(map);
 
+        // Logo
+        var logo = $(".fco-link")[0];
+        map.controls[google.maps.ControlPosition.TOP_CENTER].push(logo);
+
+
         // Layer controls
         var layerControlDiv = document.createElement('div');
         var layerControl = new LayerControl(layerControlDiv, columns, map, addStyle);
@@ -493,15 +532,22 @@
         layerControlDiv.index = 3;
         map.controls[google.maps.ControlPosition.TOP_RIGHT].push(layerControlDiv);
 
+        // Add popup control
+        addGenericControl(map, "&#8599;", "Open map in a separate window", 2, function() {
+            var w = window.open('/map.html', 'map', 'height=768,width=1024');
+            if (window.focus) {w.focus()}
+            return false;
+        });
+
         // Add embed control
-        addGenericControl(map, "Embed", "Click to get the embed code for this map", 2, function() {
+        addGenericControl(map, "&lt;&nbsp;&gt;", "Get the embed code for this map", 2, function() {
             $(".embed.jqmWindow").jqm({closeClass: 'close'}).jqmShow();
 
             $("#embed-code").focus().select();
         });
 
         // Add about control
-        addGenericControl(map, "About", "Click to read about this map", 1, function() {
+        addGenericControl(map, "?", "About this map", 1, function() {
             $(".about.jqmWindow").jqm({closeClass: 'close'}).jqmShow();
         });
 
@@ -558,6 +604,7 @@
     function updateLegend(column) {
         var legendDiv = document.createElement('div');
         var legend = new Legend(legendDiv, column);
+        legendDiv.id = "key";
         legendDiv.index = 1;
         map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].pop();
         map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(legendDiv);
@@ -565,22 +612,28 @@
 
     // Generate the content for the legend
     function Legend(controlDiv, column) {
-        controlDiv.style.padding = '10px';
+        controlDiv.style.padding = '5px';
         var controlUI = document.createElement('div');
         controlUI.style.backgroundColor = 'white';
         controlUI.style.borderStyle = 'solid';
         controlUI.style.borderWidth = '1px';
+        controlUI.style.lineHeight = 'normal';
         controlUI.style.width = legend_width;
         controlUI.title = 'Legend';
         controlDiv.appendChild(controlUI);
         var controlText = document.createElement('div');
         controlText.style.fontFamily = 'Arial,sans-serif';
-        controlText.style.fontSize = '12px';
+        controlText.style.fontSize = '10px';
         controlText.style.paddingLeft = '4px';
         controlText.style.paddingRight = '4px';
 
         controlText.innerHTML = legendContent(column);
         controlUI.appendChild(controlText);
+
+        // Hide the key when the close button is clicked
+        $(controlText).find(".close").click(function() {
+            $(this).parents("#key").hide();
+        });
     }
 
     function legendContent(column) {
@@ -588,14 +641,19 @@
 
         // Generate the content for the legend using colors from object
         var controlTextList = new Array();
-        controlTextList.push('<p><b>');
+        controlTextList.push('<p style="margin: 8px 0;"><b>');
         controlTextList.push(column);
+        controlTextList.push("<a class='close' href='#' title='Close'>X</a>")
         controlTextList.push('</b></p>');
         for(defined_style in defined_styles) {
           var style = defined_styles[defined_style];
+          if (style.color === colors.NA) {
+            // Skip NAs
+            continue;
+          }
           controlTextList.push('<div style="background-color: ');
           controlTextList.push(style.color);
-          controlTextList.push('; height: 20px; width: 20px; margin: 3px; float: left;"></div>');
+          controlTextList.push('; height: 18px; width: 18px; margin: 3px 3px 3px 0; float: left;"></div>');
           controlTextList.push('<div class="key-text">' + style.min);
           controlTextList.push(' to ');
           controlTextList.push(style.max + '</div>');
@@ -607,7 +665,7 @@
     }
 
     google.maps.event.addDomListener(window, 'load', function () {
-      
+
       initialize();
 
       var autoSelect = function() {
@@ -622,30 +680,34 @@
 </head>
 <body>
     <div id="map_canvas"></div>
-    
+    <a href="https://www.gov.uk/knowbeforeyougo" target="_blank" class="fco-link">
+      <img id="fco_attr" src="logo_fco.gif" alt="" width="146" height="44">
+    </a>
+
     <div class="embed jqmWindow">
       <h2>Embed this map<a class="small close" href="#">Close</a></h2>
 
       <div>
       <p>If you would like to embed this map on your blog or website, use this code:</p>
-      <textarea id="embed-code" class="embed-code b2-text well" rows="1">&lt;iframe width=&quot;100%&quot; height=&quot;100%&quot; scrolling=&quot;no&quot; src=&quot;//fco-bba-2012.s3-website-eu-west-1.amazonaws.com/map.html&quot;&gt;&lt;/iframe&gt;</textarea>
+      <textarea id="embed-code" class="embed-code b2-text well" rows="1">&lt;iframe width=&quot;460&quot; height=&quot;350&quot; scrolling=&quot;no&quot; frameborder=&quot;0&quot; marginheight=&quot;0&quot; marginwidth=&quot;0&quot; src=&quot;//fco-bba-2013.s3-website-eu-west-1.amazonaws.com/map.html&quot;&gt;&lt;/iframe&gt;</textarea>
       </div>
     </div>
 
     <div class="about jqmWindow">
       <h2>Britons in trouble abroad<a class="small close" href="#">Close</a></h2>
 
-      <p>Total numbers of incidents requiring consular assistance from the <a href="http://www.fco.gov.uk/">Foreign and Commonwealth Office</a> between April 2011 and March 2012, listed by country.</p>
-      
-      <p>These figures have been compiled from records of consular assistance provided by the Foreign and Commonwealth Office between April 2011 and March 2012. The combined data is publicly available as <a href="http://bit.ly/bba-data-2012" target="_top">a Google spreadsheet</a>.</p>
+      <p>Total numbers of incidents requiring consular assistance from the <a href="http://www.fco.gov.uk/">Foreign &amp; Commonwealth Office</a> between April 2012 and March 2013, listed by country.</p>
+
+      <p>These figures have been compiled from records of consular assistance provided by the Foreign &amp; Commonwealth Office between April 2012 and March 2013. The combined data is publicly available as <a href="http://bit.ly/bba-data-2013" target="_top">a Google spreadsheet</a>.</p>
 
       <p class="small">Design inspired by the <a href="http://www.guardian.co.uk/news/datablog" target="_top">Guardian Datablog</a>.</p>
       <p class="small">Licensed under a <a href="http://creativecommons.org/licenses/by/3.0/" target="_top">Creative Commons Attribution 3.0 Unported License</a>.</p>
     </div>
-    
-    <script type="text/javascript">
+
+  <script type="text/javascript">
+
     var _gaq = _gaq || [];
-    _gaq.push(['_setAccount', 'UA-1903723-10']);
+    _gaq.push(['_setAccount', 'UA-42130617-1']);
     _gaq.push(['_trackPageview']);
 
     (function() {
@@ -653,6 +715,7 @@
       ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
       var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
     })();
-    </script>
+
+  </script>
 </body>
 </html>
